@@ -1,0 +1,16 @@
+---
+import { accreditations } from '@/data/navigation';
+import AccreditationBadge from '@/components/ui/AccreditationBadge.astro';
+---
+
+<section
+  style="background: var(--color-white); border-bottom: 1px solid var(--color-border);"
+  data-reveal
+  aria-label="Accreditations"
+>
+  <div style="max-width: 1000px; margin: 0 auto; padding: 20px 24px; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 16px;">
+    {accreditations.map((acc) => (
+      <AccreditationBadge name={acc.name} />
+    ))}
+  </div>
+</section>

@@ -1,0 +1,123 @@
+---
+import { config } from '@/config';
+import { navLinks } from '@/data/navigation';
+import { practiceAreas } from '@/data/practice-areas';
+import { Linkedin, Twitter } from '@lucide/astro';
+---
+
+<footer role="contentinfo" style="background: var(--color-dark-navy); color: rgba(255,255,255,0.55);">
+  <!-- Main footer -->
+  <div style="max-width: 1100px; margin: 0 auto; padding: 56px 32px 40px;">
+    <div style="display: grid; grid-template-columns: 1fr; gap: 40px;" class="footer-grid">
+      <!-- Firm -->
+      <div>
+        <span class="font-heading" style="font-size: 1rem; color: #FFFFFF; letter-spacing: 0.06em; display: block; margin-bottom: 16px;">
+          ALDRIDGE <span style="color: var(--color-brass);">&amp;</span> PRYCE
+        </span>
+        <p class="font-body" style="font-size: 0.85rem; line-height: 1.7; max-width: 260px; margin: 0 0 20px;">
+          Expert legal counsel for individuals and businesses across Greater Manchester since {config.founded}.
+        </p>
+        <div style="display: flex; gap: 10px;">
+          <a href={config.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style="color: rgba(255,255,255,0.35); transition: color 0.2s;" class="footer-social">
+            <Linkedin size={16} aria-hidden="true" />
+          </a>
+          <a href={config.social.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter" style="color: rgba(255,255,255,0.35); transition: color 0.2s;" class="footer-social">
+            <Twitter size={16} aria-hidden="true" />
+          </a>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div>
+        <span class="font-body" style="font-size: 0.68rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-brass); display: block; margin-bottom: 14px;">
+          Navigation
+        </span>
+        <nav aria-label="Footer navigation">
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+            {navLinks.map((link) => (
+              <li>
+                <a href={link.href} class="font-body footer-link" style="font-size: 0.85rem; color: rgba(255,255,255,0.5); transition: color 0.2s;">{link.label}</a>
+              </li>
+            ))}
+            <li>
+              <a href="/privacy/" class="font-body footer-link" style="font-size: 0.85rem; color: rgba(255,255,255,0.5); transition: color 0.2s;">Privacy &amp; Complaints</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Expertise -->
+      <div>
+        <span class="font-body" style="font-size: 0.68rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-brass); display: block; margin-bottom: 14px;">
+          Expertise
+        </span>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+          {practiceAreas.map((area) => (
+            <li>
+              <a href="/practice-areas/" class="font-body footer-link" style="font-size: 0.85rem; color: rgba(255,255,255,0.5); transition: color 0.2s;">{area.name}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <span class="font-body" style="font-size: 0.68rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-brass); display: block; margin-bottom: 14px;">
+          Contact
+        </span>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <span class="font-body" style="font-size: 0.85rem;">{config.address.full}</span>
+          <a href={`tel:${config.phone.replace(/\s/g, '')}`} class="font-body footer-link" style="font-size: 0.85rem; color: rgba(255,255,255,0.5);">{config.phone}</a>
+          <a href={`mailto:${config.email}`} class="font-body footer-link" style="font-size: 0.85rem; color: rgba(255,255,255,0.5);">{config.email}</a>
+          <span class="font-body" style="font-size: 0.82rem; margin-top: 4px;">{config.hours.weekday}</span>
+          <span class="font-body" style="font-size: 0.78rem; color: rgba(255,255,255,0.35);">{config.hours.note}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Compliance bar -->
+  <div style="border-top: 1px solid rgba(255,255,255,0.06);">
+    <div style="max-width: 1100px; margin: 0 auto; padding: 20px 32px; display: flex; flex-direction: column; gap: 12px;" class="footer-bottom">
+      <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+        <a
+          href="https://www.sra.org.uk/consumers/register/organisation/?sraNumber=648291"
+          target="_blank"
+          rel="noopener noreferrer"
+          style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.7rem; font-weight: 600; color: rgba(255,255,255,0.5); transition: color 0.2s;"
+          class="footer-link"
+        >
+          <span style="width: 6px; height: 6px; background: #4CAF50; border-radius: 50%; display: inline-block;"></span>
+          SRA Regulated &mdash; No. {config.sraNumber}
+        </a>
+        <span class="font-body" style="font-size: 0.7rem; color: rgba(255,255,255,0.25);">
+          Authorised and regulated by the Solicitors Regulation Authority
+        </span>
+      </div>
+      <p class="font-body" style="font-size: 0.68rem; color: rgba(255,255,255,0.2); margin: 0;">
+        &copy; {new Date().getFullYear()} {config.legalName}. All rights reserved. Registered in England &amp; Wales.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  @media (min-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1.4fr 1fr 1fr 1.2fr !important;
+    }
+    .footer-bottom {
+      flex-direction: row !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+    }
+  }
+
+  .footer-link:hover {
+    color: var(--color-brass) !important;
+  }
+
+  .footer-social:hover {
+    color: var(--color-brass) !important;
+  }
+</style>

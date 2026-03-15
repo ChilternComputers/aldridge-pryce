@@ -1,0 +1,141 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import PageHero from '@/components/sections/PageHero.astro';
+import StatsStrip from '@/components/sections/StatsStrip.astro';
+import ConsultationCTA from '@/components/sections/ConsultationCTA.astro';
+import { getWebPageSchema } from '@/lib/schemas';
+---
+
+<Layout
+  title="About Us | Aldridge & Pryce Solicitors"
+  description="Learn about Aldridge & Pryce, a leading Manchester solicitors firm established in 1983. Our story, values, and commitment to exceptional legal service."
+  schema={getWebPageSchema({
+    title: 'About Us',
+    description: 'The story of Aldridge & Pryce Solicitors, established 1983.',
+    url: '/about/',
+  })}
+>
+  <PageHero
+    title="About Our Firm"
+    subtitle="For over four decades, we've helped individuals and businesses navigate their most important legal matters with confidence."
+    eyebrow="Aldridge & Pryce"
+  />
+
+  <!-- Story -->
+  <section style="background: var(--color-ivory); padding: 80px 32px;">
+    <div style="max-width: 720px; margin: 0 auto;">
+      <div data-reveal>
+        <span class="eyebrow" style="display: block; margin-bottom: 14px;">Our Story</span>
+        <h2 class="font-heading" style="margin: 0 0 14px;">Founded on a simple belief</h2>
+        <div class="brass-rule" style="margin-bottom: 32px;"></div>
+      </div>
+
+      <div data-reveal>
+        <p class="font-body" style="font-size: 1.05rem; color: var(--color-charcoal); line-height: 1.85; margin: 0 0 20px; max-width: none;">
+          Aldridge & Pryce was founded in 1983 by Catherine Aldridge and James Pryce — two solicitors who shared a conviction that exceptional legal advice shouldn't be reserved for those who could afford City firm fees.
+        </p>
+        <p class="font-body" style="font-size: 1.05rem; color: var(--color-charcoal); line-height: 1.85; margin: 0 0 20px; max-width: none;">
+          From a modest office in central Manchester, they built a practice that combines deep specialist expertise with a genuinely personal service. Forty years on, that founding belief remains at the heart of everything we do.
+        </p>
+        <p class="font-body" style="font-size: 1.05rem; color: var(--color-charcoal); line-height: 1.85; margin: 0; max-width: none;">
+          Today we are a team of twelve — four partners, three associates, and five support professionals — serving private clients and businesses across Greater Manchester and beyond.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pull quote -->
+  <section style="background: var(--color-white); padding: 64px 32px;">
+    <div style="max-width: 720px; margin: 0 auto; border-left: 3px solid var(--color-brass); padding-left: 32px;" data-reveal>
+      <blockquote style="margin: 0;">
+        <p class="font-heading" style="font-size: clamp(1.3rem, 2.2vw, 1.7rem); font-style: italic; line-height: 1.6; color: var(--color-navy); margin: 0;">
+          &ldquo;Exceptional legal advice demands more than technical knowledge. It requires understanding — of your situation, your objectives, and the human context behind every instruction.&rdquo;
+        </p>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section style="background: var(--color-ivory); padding: 80px 32px;">
+    <div style="max-width: 720px; margin: 0 auto;">
+      <div data-reveal>
+        <span class="eyebrow" style="display: block; margin-bottom: 14px;">Our Approach</span>
+        <h2 class="font-heading" style="margin: 0 0 14px;">What sets us apart</h2>
+        <div class="brass-rule" style="margin-bottom: 40px;"></div>
+      </div>
+
+      <div style="border-top: 1px solid var(--color-border);" data-stagger-parent>
+        {[
+          { title: 'A named solicitor on every matter', text: 'You won\'t be passed between departments or left dealing with a different person each time you call. Your solicitor knows your case, understands your concerns, and is accountable for the outcome.' },
+          { title: 'Transparent, fair pricing', text: 'We offer fixed fees wherever possible and always provide a clear estimate before we begin work. There are no hidden charges, no surprises.' },
+          { title: 'Advice you can understand', text: 'Legal jargon doesn\'t help anyone. We explain your options in plain English, give you our honest assessment of your position, and help you make informed decisions.' },
+        ].map((item) => (
+          <div style="padding: 28px 0; border-bottom: 1px solid var(--color-border);" data-stagger-child>
+            <h3 class="font-heading" style="font-size: 1.1rem; color: var(--color-navy); margin: 0 0 10px;">{item.title}</h3>
+            <p class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.75; margin: 0; max-width: none;">
+              {item.text}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <StatsStrip />
+
+  <!-- Accreditations -->
+  <section style="background: var(--color-ivory); padding: 80px 32px;">
+    <div style="max-width: 720px; margin: 0 auto;">
+      <div data-reveal>
+        <span class="eyebrow" style="display: block; margin-bottom: 14px;">Recognition</span>
+        <h2 class="font-heading" style="margin: 0 0 14px;">Awards &amp; Accreditations</h2>
+        <div class="brass-rule" style="margin-bottom: 32px;"></div>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 0;" data-stagger-parent>
+        {['Chambers UK — Ranked Firm', 'Legal 500 — Recommended', 'The Law Society', 'SRA Regulated', 'Conveyancing Quality Scheme', 'Resolution Member'].map((name) => (
+          <span
+            class="font-body"
+            style="font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; color: var(--color-navy); padding: 10px 20px; border: 1px solid var(--color-border); margin: -1px 0 0 -1px;"
+            data-stagger-child
+          >
+            {name}
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section style="background: var(--color-white); padding: 80px 32px;">
+    <div style="max-width: 720px; margin: 0 auto;">
+      <div data-reveal>
+        <span class="eyebrow" style="display: block; margin-bottom: 14px;">Our Journey</span>
+        <h2 class="font-heading" style="margin: 0 0 14px;">Milestones</h2>
+        <div class="brass-rule" style="margin-bottom: 40px;"></div>
+      </div>
+
+      <div data-stagger-parent>
+        {[
+          { year: '1983', text: 'Catherine Aldridge and James Pryce establish the firm in central Manchester.' },
+          { year: '1995', text: 'Expansion into commercial and corporate law, advising Manchester\'s growing SME sector.' },
+          { year: '2005', text: 'Move to larger premises at St Peter\'s Square. Team grows to ten.' },
+          { year: '2012', text: 'First recognition in Chambers UK for family law practice.' },
+          { year: '2018', text: 'Sarah Whitfield and David Okafor promoted to partnership.' },
+          { year: '2024', text: 'Over 2,500 cases completed. Named in Legal 500 for third consecutive year.' },
+        ].map((item) => (
+          <div style="display: grid; grid-template-columns: 64px 1fr; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--color-border);" data-stagger-child>
+            <span class="font-body" style="font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; color: var(--color-brass); padding-top: 2px;">
+              {item.year}
+            </span>
+            <p class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.6; margin: 0; max-width: none;">
+              {item.text}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ConsultationCTA />
+</Layout>

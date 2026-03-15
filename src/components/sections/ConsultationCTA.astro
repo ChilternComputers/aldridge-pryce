@@ -1,0 +1,61 @@
+---
+import Input from '@/components/ui/Input.astro';
+import { config } from '@/config';
+import { Phone } from '@lucide/astro';
+---
+
+<section style="background: var(--color-navy); padding: 80px 32px;" aria-label="Request a consultation">
+  <div style="max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 56px; align-items: start;" class="cta-grid">
+    <!-- Left: Editorial text -->
+    <div data-reveal>
+      <span class="eyebrow" style="display: block; margin-bottom: 14px;">Get in Touch</span>
+      <h2 class="font-heading" style="margin: 0 0 14px; color: #FFFFFF; font-size: clamp(1.8rem, 3vw, 2.6rem);">
+        Ready to speak<br>with a specialist?
+      </h2>
+      <div style="width: 48px; height: 2px; background: var(--color-brass); margin-bottom: 24px;"></div>
+      <p class="font-body" style="font-size: 1rem; color: rgba(255,255,255,0.6); line-height: 1.75; margin: 0 0 28px; max-width: 380px;">
+        Tell us about your matter and we'll arrange a confidential consultation at a time that suits you.
+      </p>
+      <a href={`tel:${config.phone.replace(/\s/g, '')}`} style="display: inline-flex; align-items: center; gap: 8px; color: var(--color-brass); font-size: 0.95rem; font-weight: 600; transition: opacity 0.2s;">
+        <Phone size={16} aria-hidden="true" />
+        {config.phone}
+      </a>
+    </div>
+
+    <!-- Right: Compact form -->
+    <div data-reveal>
+      <form id="consultation-form" style="display: flex; flex-direction: column; gap: 16px;">
+        <Input name="cta-name" label="Name" required variant="dark" placeholder="Full name" />
+        <Input name="cta-phone" label="Phone" type="tel" required variant="dark" placeholder="Phone number" />
+        <Input name="cta-message" label="How can we help?" type="textarea" variant="dark" placeholder="Describe your matter briefly..." />
+        <button type="submit" class="btn-primary" style="padding: 14px 32px; margin-top: 8px; background: var(--color-brass); color: var(--color-navy);">
+          Request a Callback
+        </button>
+        <p class="font-body" style="font-size: 0.72rem; color: rgba(255,255,255,0.3); margin: 0;">
+          Confidential. No obligation. We typically respond within 2 hours.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (min-width: 768px) {
+    .cta-grid {
+      grid-template-columns: 1fr 1fr !important;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('consultation-form') as HTMLFormElement;
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    if (btn) {
+      btn.textContent = 'Thank you — we\'ll call you shortly';
+      btn.disabled = true;
+      btn.style.opacity = '0.6';
+    }
+  });
+</script>

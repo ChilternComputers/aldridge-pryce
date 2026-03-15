@@ -1,0 +1,87 @@
+---
+import { config } from '@/config';
+---
+
+<section style="background: var(--color-navy); padding: 72px 32px;" aria-label="Key facts">
+  <div style="max-width: 960px; margin: 0 auto;">
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0;" class="stats-grid" data-stagger-parent>
+      {[
+        { value: config.stats.years, suffix: '+', label: 'Years Established' },
+        { value: config.stats.cases, suffix: '+', label: 'Cases Resolved' },
+        { value: config.stats.satisfaction, suffix: '%', label: 'Client Satisfaction' },
+        { value: config.stats.specialists, suffix: '', label: 'Legal Specialists' },
+      ].map((stat, i) => (
+        <div
+          style={`padding: 32px; ${i < 2 ? 'border-bottom: 1px solid rgba(255,255,255,0.08);' : ''} ${i % 2 === 0 ? 'border-right: 1px solid rgba(255,255,255,0.08);' : ''}`}
+          data-stagger-child
+        >
+          <div style="display: flex; align-items: baseline; gap: 2px; margin-bottom: 6px;">
+            <span class="stat-number font-heading" data-target={stat.value} style="font-size: clamp(2.2rem, 3.5vw, 3rem); color: var(--color-brass); line-height: 1;">
+              0
+            </span>
+            <span class="font-heading" style="font-size: clamp(1.2rem, 2vw, 1.6rem); color: var(--color-brass);">
+              {stat.suffix}
+            </span>
+          </div>
+          <p class="font-body" style="font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin: 0;">
+            {stat.label}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (min-width: 768px) {
+    .stats-grid {
+      grid-template-columns: repeat(4, 1fr) !important;
+    }
+    .stats-grid > div {
+      border-bottom: none !important;
+    }
+    .stats-grid > div:last-child {
+      border-right: none !important;
+    }
+  }
+</style>
+
+<script>
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const counters = document.querySelectorAll('.stat-number');
+
+  function animateCounter(el: HTMLElement) {
+    const target = parseInt(el.dataset.target || '0', 10);
+    const duration = 2000;
+    const start = performance.now();
+
+    function update(now: number) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(eased * target).toString();
+      if (progress < 1) requestAnimationFrame(update);
+      else el.textContent = target.toString();
+    }
+    requestAnimationFrame(update);
+  }
+
+  if (!prefersReducedMotion) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target as HTMLElement);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    counters.forEach((el) => observer.observe(el));
+  } else {
+    counters.forEach((el) => {
+      (el as HTMLElement).textContent = (el as HTMLElement).dataset.target || '0';
+    });
+  }
+</script>

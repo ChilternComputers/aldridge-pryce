@@ -1,0 +1,122 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import PageHero from '@/components/sections/PageHero.astro';
+import ConsultationCTA from '@/components/sections/ConsultationCTA.astro';
+import { fees } from '@/data/fees';
+import { config } from '@/config';
+import { getWebPageSchema } from '@/lib/schemas';
+---
+
+<Layout
+  title="Fees & Transparency | Aldridge & Pryce Solicitors"
+  description="Transparent legal fees from Aldridge & Pryce. View our pricing for residential conveyancing, wills & probate, and employment tribunal representation."
+  schema={getWebPageSchema({
+    title: 'Fees & Transparency',
+    description: 'Transparent legal fees and pricing information.',
+    url: '/fees/',
+  })}
+>
+  <PageHero
+    title="Fees &amp; Transparency"
+    subtitle="We believe in transparent pricing. Below you'll find indicative fees for our most commonly requested services."
+    eyebrow="SRA Price Transparency"
+  />
+
+  <!-- Intro -->
+  <section style="background: var(--color-ivory); padding: 64px 32px 0;">
+    <div style="max-width: 720px; margin: 0 auto;" data-reveal>
+      <p class="font-body" style="font-size: 1rem; color: var(--color-charcoal); line-height: 1.8; margin: 0 0 16px; max-width: none;">
+        The Solicitors Regulation Authority requires law firms to publish pricing information for certain types of legal work. We welcome this — it reflects our longstanding commitment to honest, upfront pricing.
+      </p>
+      <p class="font-body" style="font-size: 1rem; color: var(--color-charcoal); line-height: 1.8; margin: 0; max-width: none;">
+        The fees below are indicative. We always provide a personalised, written estimate before we begin work.
+      </p>
+    </div>
+  </section>
+
+  <!-- Fee sections -->
+  <section style="background: var(--color-ivory); padding: 48px 32px 80px;">
+    <div style="max-width: 720px; margin: 0 auto;" data-stagger-parent>
+      {fees.map((fee) => (
+        <div style="padding: 48px 0; border-bottom: 1px solid var(--color-border);" data-stagger-child>
+          <!-- Header -->
+          <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;">
+            <h3 class="font-heading" style="font-size: 1.3rem; color: var(--color-navy); margin: 0;">{fee.service}</h3>
+            <span class="font-body" style="font-size: 1rem; font-weight: 600; color: var(--color-brass);">{fee.feeRange}</span>
+          </div>
+
+          <p class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.75; margin: 0 0 24px; max-width: none;">
+            {fee.description}
+          </p>
+
+          <!-- Stages -->
+          <div style="margin-bottom: 24px;">
+            <span class="font-body" style="font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-brass); display: block; margin-bottom: 10px;">
+              Key Stages
+            </span>
+            <ol style="padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 6px;">
+              {fee.stages.map((stage) => (
+                <li class="font-body" style="font-size: 0.9rem; color: var(--color-charcoal); line-height: 1.5;">
+                  {stage}
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <!-- Disbursements -->
+          <div style="margin-bottom: 24px;">
+            <span class="font-body" style="font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-brass); display: block; margin-bottom: 10px;">
+              Disbursements
+            </span>
+            <ul style="padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 6px;">
+              {fee.disbursements.map((item) => (
+                <li class="font-body" style="font-size: 0.9rem; color: var(--color-charcoal); line-height: 1.5;">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Timescale + handler — compact -->
+          <div style="display: grid; grid-template-columns: 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--color-border);" class="fee-meta">
+            <div>
+              <span class="font-body" style="font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-brass); display: block; margin-bottom: 4px;">Timescale</span>
+              <p class="font-body" style="font-size: 0.85rem; color: var(--color-charcoal); line-height: 1.6; margin: 0; max-width: none;">{fee.timescale}</p>
+            </div>
+            <div>
+              <span class="font-body" style="font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-brass); display: block; margin-bottom: 4px;">Who handles your matter</span>
+              <p class="font-body" style="font-size: 0.85rem; color: var(--color-charcoal); line-height: 1.6; margin: 0; max-width: none;">{fee.handler}</p>
+            </div>
+          </div>
+
+          <p class="font-body" style="font-size: 0.78rem; color: var(--color-muted); margin: 12px 0 0; font-style: italic; max-width: none;">
+            All fees subject to VAT at 20%. A personalised quote will be provided before we begin work.
+          </p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Complaints -->
+  <section style="background: var(--color-stone); padding: 48px 32px;">
+    <div style="max-width: 720px; margin: 0 auto;" data-reveal>
+      <h3 class="font-heading" style="font-size: 1.1rem; color: var(--color-navy); margin: 0 0 12px;">Not satisfied?</h3>
+      <p class="font-body" style="font-size: 0.92rem; color: var(--color-charcoal); line-height: 1.7; margin: 0 0 10px; max-width: none;">
+        Contact our Practice Manager, Rachel Cooper, at <a href={`mailto:${config.email}`} style="color: var(--color-brass);">{config.email}</a> or on <a href={`tel:${config.phone.replace(/\s/g, '')}`} style="color: var(--color-brass);">{config.phone}</a>.
+      </p>
+      <p class="font-body" style="font-size: 0.92rem; color: var(--color-charcoal); line-height: 1.7; margin: 0; max-width: none;">
+        If unresolved, refer to the <a href="https://www.legalombudsman.org.uk" target="_blank" rel="noopener noreferrer" style="color: var(--color-brass);">Legal Ombudsman</a> (0300 555 0333). Full details in our <a href="/privacy/" style="color: var(--color-brass);">complaints procedure</a>.
+      </p>
+    </div>
+  </section>
+
+  <ConsultationCTA />
+</Layout>
+
+<style>
+  @media (min-width: 640px) {
+    .fee-meta {
+      grid-template-columns: 1fr 1fr !important;
+    }
+  }
+</style>

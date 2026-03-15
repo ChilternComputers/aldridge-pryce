@@ -1,0 +1,50 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import PageHero from '@/components/sections/PageHero.astro';
+import ConsultationCTA from '@/components/sections/ConsultationCTA.astro';
+import { articles } from '@/data/insights';
+import { getWebPageSchema } from '@/lib/schemas';
+---
+
+<Layout
+  title="Insights & Legal News | Aldridge & Pryce Solicitors"
+  description="Legal insights, news and guides from Aldridge & Pryce Solicitors. Expert analysis on employment law, family law, conveyancing, criminal defence and more."
+  schema={getWebPageSchema({
+    title: 'Insights & Legal News',
+    description: 'Legal insights and thought leadership from Aldridge & Pryce.',
+    url: '/insights/',
+  })}
+>
+  <PageHero
+    title="Insights"
+    subtitle="Legal analysis, practical guides, and thought leadership from our specialist solicitors."
+    eyebrow="News & Articles"
+  />
+
+  <section style="background: var(--color-ivory); padding: 80px 32px;">
+    <div style="max-width: 720px; margin: 0 auto; border-top: 1px solid var(--color-border);" data-stagger-parent>
+      {articles.map((article) => {
+        const date = new Date(article.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+        return (
+          <article style="padding: 32px 0; border-bottom: 1px solid var(--color-border);" data-stagger-child>
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px; flex-wrap: wrap;">
+              <span class="font-body" style="font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-brass);">
+                {article.practiceArea}
+              </span>
+              <span class="font-body" style="font-size: 0.78rem; color: var(--color-muted);">{date}</span>
+              <span class="font-body" style="font-size: 0.78rem; color: var(--color-muted);">{article.readTime}</span>
+            </div>
+            <h3 class="font-heading" style="font-size: 1.2rem; color: var(--color-navy); margin: 0 0 10px; line-height: 1.35;">
+              {article.title}
+            </h3>
+            <p class="font-body" style="font-size: 0.92rem; color: var(--color-charcoal); line-height: 1.7; margin: 0; max-width: none;">
+              {article.excerpt}
+            </p>
+          </article>
+        );
+      })}
+    </div>
+  </section>
+
+  <ConsultationCTA />
+</Layout>

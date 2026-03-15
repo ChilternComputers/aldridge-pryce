@@ -1,0 +1,27 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Hero from '@/components/sections/Hero.astro';
+import PracticeAreasPreview from '@/components/sections/PracticeAreasPreview.astro';
+import AboutTeaser from '@/components/sections/AboutTeaser.astro';
+import StatsStrip from '@/components/sections/StatsStrip.astro';
+import Testimonials from '@/components/sections/Testimonials.astro';
+import TeamPreview from '@/components/sections/TeamPreview.astro';
+import InsightsPreview from '@/components/sections/InsightsPreview.astro';
+import ConsultationCTA from '@/components/sections/ConsultationCTA.astro';
+import { getLegalServiceSchema } from '@/lib/schemas';
+---
+
+<Layout
+  title="Aldridge & Pryce Solicitors | Manchester Law Firm — Est. 1983"
+  description="Aldridge & Pryce is a leading Manchester solicitors firm offering expert legal advice across family law, conveyancing, wills & probate, criminal defence, employment, personal injury, commercial law and dispute resolution."
+  schema={getLegalServiceSchema()}
+>
+  <Hero />
+  <PracticeAreasPreview />
+  <AboutTeaser />
+  <StatsStrip />
+  <Testimonials />
+  <TeamPreview />
+  <InsightsPreview />
+  <ConsultationCTA />
+</Layout>

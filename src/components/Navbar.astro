@@ -1,0 +1,130 @@
+---
+import { navLinks } from '@/data/navigation';
+import { config } from '@/config';
+import { Phone, Mail } from '@lucide/astro';
+---
+
+<!-- Utility bar — contact info, SRA number -->
+<div
+  id="utility-bar"
+  style="background: var(--color-dark-navy); border-bottom: 1px solid rgba(255,255,255,0.06); transition: transform 0.3s ease, opacity 0.3s ease;"
+>
+  <div style="max-width: 1280px; margin: 0 auto; padding: 0 32px; height: 36px; display: flex; align-items: center; justify-content: space-between;">
+    <div style="display: flex; align-items: center; gap: 24px;">
+      <a href={`tel:${config.phone.replace(/\s/g, '')}`} style="display: flex; align-items: center; gap: 6px; font-size: 0.72rem; color: rgba(255,255,255,0.55); transition: color 0.2s;" class="font-body utility-link">
+        <Phone size={11} aria-hidden="true" />
+        {config.phone}
+      </a>
+      <a href={`mailto:${config.email}`} style="display: flex; align-items: center; gap: 6px; font-size: 0.72rem; color: rgba(255,255,255,0.55); transition: color 0.2s;" class="font-body utility-link">
+        <Mail size={11} aria-hidden="true" />
+        {config.email}
+      </a>
+    </div>
+    <span class="font-body" style="font-size: 0.65rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.3);">
+      SRA No. {config.sraNumber}
+    </span>
+  </div>
+</div>
+
+<!-- Main navigation -->
+<header
+  id="navbar"
+  style="position: sticky; top: 0; z-index: 100; background: transparent; transition: background-color 0.4s ease, box-shadow 0.4s ease;"
+  role="banner"
+>
+  <nav
+    style="max-width: 1280px; margin: 0 auto; padding: 0 32px; height: 72px; display: flex; align-items: center; justify-content: space-between;"
+    aria-label="Main navigation"
+  >
+    <!-- Logo -->
+    <a href="/" style="text-decoration: none;">
+      <span class="font-heading" style="font-size: 1.1rem; font-weight: 400; letter-spacing: 0.06em; color: var(--color-navy);">
+        ALDRIDGE <span style="color: var(--color-brass);">&amp;</span> PRYCE
+      </span>
+    </a>
+
+    <!-- Desktop links -->
+    <div style="display: none; align-items: center; gap: 28px;" class="desktop-nav">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="nav-link font-body"
+          style="font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em; color: var(--color-charcoal); transition: color 0.2s;"
+          aria-current={Astro.url.pathname === link.href ? 'page' : undefined}
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href="/contact/"
+        class="btn-primary"
+        style="padding: 10px 24px; border-radius: 0; font-size: 0.72rem; margin-left: 8px;"
+      >
+        Book Consultation
+      </a>
+    </div>
+
+    <!-- Mobile toggle -->
+    <button
+      id="menu-toggle"
+      class="mobile-only"
+      style="display: flex; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 110;"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span id="burger-1" style="display: block; width: 22px; height: 1.5px; background: var(--color-navy); transition: transform 0.3s ease, opacity 0.3s ease;"></span>
+      <span id="burger-2" style="display: block; width: 22px; height: 1.5px; background: var(--color-navy); transition: transform 0.3s ease, opacity 0.3s ease;"></span>
+      <span id="burger-3" style="display: block; width: 16px; height: 1.5px; background: var(--color-navy); transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;"></span>
+    </button>
+  </nav>
+
+  <!-- Bottom border — appears on scroll -->
+  <div id="nav-border" style="height: 1px; background: var(--color-border); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;"></div>
+</header>
+
+<style>
+  @media (min-width: 1024px) {
+    .desktop-nav {
+      display: flex !important;
+    }
+    .mobile-only {
+      display: none !important;
+    }
+  }
+
+  .utility-link:hover {
+    color: var(--color-brass) !important;
+  }
+</style>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  const utilityBar = document.getElementById('utility-bar');
+  const navBorder = document.getElementById('nav-border');
+  let isScrolled = false;
+
+  function updateNav() {
+    const scrolled = window.scrollY > 80;
+    if (scrolled === isScrolled) return;
+    isScrolled = scrolled;
+
+    if (navbar) {
+      navbar.style.backgroundColor = scrolled ? 'var(--color-white)' : 'transparent';
+      navbar.style.boxShadow = scrolled ? '0 1px 8px rgba(0,0,0,0.04)' : 'none';
+    }
+
+    if (utilityBar) {
+      utilityBar.style.transform = scrolled ? 'translateY(-100%)' : 'translateY(0)';
+      utilityBar.style.opacity = scrolled ? '0' : '1';
+      utilityBar.style.position = scrolled ? 'absolute' : 'relative';
+    }
+
+    if (navBorder) {
+      navBorder.style.transform = scrolled ? 'scaleX(1)' : 'scaleX(0)';
+    }
+  }
+
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+</script>

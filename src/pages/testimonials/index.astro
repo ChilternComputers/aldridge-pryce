@@ -1,0 +1,45 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import PageHero from '@/components/sections/PageHero.astro';
+import ConsultationCTA from '@/components/sections/ConsultationCTA.astro';
+import { testimonials } from '@/data/testimonials';
+import { getWebPageSchema } from '@/lib/schemas';
+---
+
+<Layout
+  title="Client Testimonials | Aldridge & Pryce Solicitors"
+  description="Read what our clients say about Aldridge & Pryce. Genuine testimonials from individuals and businesses across family law, conveyancing, criminal defence and more."
+  schema={getWebPageSchema({
+    title: 'Client Testimonials',
+    description: 'Client testimonials for Aldridge & Pryce Solicitors.',
+    url: '/testimonials/',
+  })}
+>
+  <PageHero
+    title="Client Testimonials"
+    subtitle="We let our clients' words speak for themselves. Names are abbreviated for confidentiality."
+    eyebrow="What Our Clients Say"
+  />
+
+  <section style="background: var(--color-ivory); padding: 80px 32px;">
+    <div style="max-width: 720px; margin: 0 auto;" data-stagger-parent>
+      {testimonials.map((t, i) => (
+        <div style={`padding: 40px 0; ${i < testimonials.length - 1 ? 'border-bottom: 1px solid var(--color-border);' : ''}`} data-stagger-child>
+          <blockquote style="margin: 0;">
+            <p class="font-heading" style={`font-size: ${i === 0 ? 'clamp(1.3rem, 2.2vw, 1.7rem)' : '1.05rem'}; font-style: italic; line-height: 1.7; color: var(--color-navy); margin: 0 0 16px;`}>
+              &ldquo;{t.quote}&rdquo;
+            </p>
+            <footer style="display: flex; align-items: center; gap: 10px;">
+              <div style="width: 28px; height: 1px; background: var(--color-brass);"></div>
+              <cite class="font-body" style="font-style: normal; font-size: 0.82rem; color: var(--color-muted);">
+                <strong style="color: var(--color-charcoal);">{t.author}</strong>, {t.matterType}
+              </cite>
+            </footer>
+          </blockquote>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <ConsultationCTA />
+</Layout>

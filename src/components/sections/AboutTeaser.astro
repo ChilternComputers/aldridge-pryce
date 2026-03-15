@@ -1,0 +1,48 @@
+---
+import { ArrowRight } from '@lucide/astro';
+---
+
+<section style="background: var(--color-ivory); padding: 96px 32px;" aria-label="About our firm">
+  <div style="max-width: 960px; margin: 0 auto;">
+    <!-- Eyebrow + heading -->
+    <div style="margin-bottom: 48px;" data-reveal>
+      <span class="eyebrow" style="display: block; margin-bottom: 14px;">About the Firm</span>
+      <h2 class="font-heading" style="margin: 0 0 14px;">Trusted counsel, since 1983</h2>
+      <div class="brass-rule"></div>
+    </div>
+
+    <!-- Two-column editorial text -->
+    <div style="display: grid; grid-template-columns: 1fr; gap: 40px; margin-bottom: 48px;" class="about-columns" data-reveal>
+      <p class="font-body" style="font-size: 1.02rem; color: var(--color-charcoal); line-height: 1.85; margin: 0;">
+        For over four decades, Aldridge & Pryce has provided expert legal advice to individuals and businesses across Greater Manchester. Founded by Catherine Aldridge and James Pryce, the firm combines deep specialist expertise with a genuinely personal service that larger firms struggle to replicate.
+      </p>
+      <p class="font-body" style="font-size: 1.02rem; color: var(--color-charcoal); line-height: 1.85; margin: 0;">
+        We believe exceptional legal advice demands more than technical knowledge. It requires understanding — of your situation, your objectives, and the human context behind every instruction. Our clients value our directness, our availability, and our commitment to achieving the best possible outcome.
+      </p>
+    </div>
+
+    <!-- Pull quote — large italic serif -->
+    <div style="padding: 40px 0; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); margin-bottom: 40px;" data-reveal>
+      <blockquote style="margin: 0;">
+        <p class="font-heading" style="font-size: clamp(1.3rem, 2.2vw, 1.7rem); font-style: italic; line-height: 1.6; color: var(--color-navy); margin: 0;">
+          &ldquo;What sets the firm apart is the rare ability to combine deep legal expertise with an incredibly personal touch.&rdquo;
+        </p>
+        <cite class="font-body" style="display: block; margin-top: 16px; font-size: 0.78rem; font-style: normal; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-brass);">
+          &mdash; Chambers UK
+        </cite>
+      </blockquote>
+    </div>
+
+    <a href="/about/" class="font-body" style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-navy); transition: color 0.2s;" data-reveal>
+      About Our Firm <ArrowRight size={14} aria-hidden="true" style="color: var(--color-brass);" />
+    </a>
+  </div>
+</section>
+
+<style>
+  @media (min-width: 768px) {
+    .about-columns {
+      grid-template-columns: 1fr 1fr !important;
+    }
+  }
+</style>

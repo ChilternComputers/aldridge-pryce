@@ -1,0 +1,27 @@
+---
+interface Props {
+  value: number;
+  suffix: string;
+  label: string;
+}
+
+const { value, suffix, label } = Astro.props;
+---
+
+<div style="text-align: center;">
+  <div style="display: flex; align-items: baseline; justify-content: center; gap: 2px;">
+    <span
+      class="stat-number font-heading"
+      data-target={value}
+      style="font-size: clamp(2.5rem, 4vw, 3.5rem); color: var(--color-brass); line-height: 1;"
+    >
+      0
+    </span>
+    <span class="font-heading" style="font-size: clamp(1.5rem, 2.5vw, 2rem); color: var(--color-brass);">
+      {suffix}
+    </span>
+  </div>
+  <p class="font-body" style="font-size: 0.85rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin: 8px 0 0;">
+    {label}
+  </p>
+</div>

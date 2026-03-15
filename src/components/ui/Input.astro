@@ -1,0 +1,62 @@
+---
+interface Props {
+  type?: string;
+  name: string;
+  label: string;
+  required?: boolean;
+  placeholder?: string;
+  variant?: 'light' | 'dark';
+}
+
+const { type = 'text', name, label, required = false, placeholder, variant = 'light' } = Astro.props;
+const isDark = variant === 'dark';
+---
+
+<div style="display: flex; flex-direction: column; gap: 6px;">
+  <label for={name} class="font-body" style={`font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; ${isDark ? 'color: rgba(255,255,255,0.7);' : 'color: var(--color-navy);'}`}>
+    {label}{required && <span style="color: var(--color-brass);"> *</span>}
+  </label>
+  {type === 'textarea' ? (
+    <textarea
+      id={name}
+      name={name}
+      required={required}
+      placeholder={placeholder}
+      rows="4"
+      class="font-body"
+      style={`width: 100%; padding: 12px 16px; border-radius: 2px; font-size: 0.95rem; line-height: 1.6; resize: vertical; transition: border-color 0.2s; ${isDark ? 'background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #FFFFFF;' : 'background: var(--color-ivory); border: 1px solid var(--color-border); color: var(--color-charcoal);'}`}
+    ></textarea>
+  ) : type === 'select' ? (
+    <select
+      id={name}
+      name={name}
+      required={required}
+      class="font-body"
+      style={`width: 100%; padding: 12px 16px; border-radius: 2px; font-size: 0.95rem; appearance: auto; transition: border-color 0.2s; ${isDark ? 'background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #FFFFFF;' : 'background: var(--color-ivory); border: 1px solid var(--color-border); color: var(--color-charcoal);'}`}
+    >
+      <slot />
+    </select>
+  ) : (
+    <input
+      type={type}
+      id={name}
+      name={name}
+      required={required}
+      placeholder={placeholder}
+      class="font-body"
+      style={`width: 100%; padding: 12px 16px; border-radius: 2px; font-size: 0.95rem; transition: border-color 0.2s; ${isDark ? 'background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #FFFFFF;' : 'background: var(--color-ivory); border: 1px solid var(--color-border); color: var(--color-charcoal);'}`}
+    />
+  )}
+</div>
+
+<style>
+  input:focus, textarea:focus, select:focus {
+    border-color: var(--color-brass) !important;
+    outline: none;
+  }
+
+  input::placeholder, textarea::placeholder {
+    color: var(--color-muted);
+    opacity: 0.6;
+  }
+</style>

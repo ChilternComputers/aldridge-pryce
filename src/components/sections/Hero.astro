@@ -1,0 +1,154 @@
+---
+import { ArrowRight } from '@lucide/astro';
+---
+
+<section
+  id="hero"
+  style="position: relative; min-height: 100vh; display: grid; grid-template-columns: 1fr; background: var(--color-ivory);"
+  aria-label="Welcome to Aldridge & Pryce"
+  class="hero-grid"
+>
+  <!-- Left: Content -->
+  <div style="display: flex; flex-direction: column; justify-content: center; padding: 140px 32px 80px; max-width: 640px;">
+    <div data-hero-el>
+      <span class="eyebrow" style="display: block; margin-bottom: 24px;">Manchester Solicitors &mdash; Est. 1983</span>
+    </div>
+
+    <h1
+      class="font-heading"
+      style="margin: 0 0 24px; color: var(--color-navy); font-weight: 400;"
+      data-hero-el
+    >
+      When it matters<br>most, who do<br>you turn to?
+    </h1>
+
+    <!-- Brass rule -->
+    <div class="brass-rule" style="margin-bottom: 28px;" aria-hidden="true" data-hero-el></div>
+
+    <p
+      class="font-body"
+      style="font-size: 1.1rem; line-height: 1.75; max-width: 440px; margin: 0 0 40px; color: var(--color-muted);"
+      data-hero-el
+    >
+      Expert legal counsel for individuals and businesses across Greater Manchester. Trusted for over four decades.
+    </p>
+
+    <div style="display: flex; align-items: center; gap: 24px; flex-wrap: wrap;" data-hero-el>
+      <a href="/contact/" class="btn-primary" style="padding: 14px 32px;">
+        Speak to a Specialist
+      </a>
+      <a href="/practice-areas/" class="font-body" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-navy); transition: color 0.2s;">
+        Our Expertise <ArrowRight size={14} style="color: var(--color-brass);" aria-hidden="true" />
+      </a>
+    </div>
+
+    <!-- Trust line -->
+    <div style="margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--color-border);" data-hero-el>
+      <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+        {['Chambers UK', 'Legal 500', 'The Law Society', 'SRA Regulated'].map((name) => (
+          <span style="display: inline-flex; align-items: center; gap: 7px;">
+            <span style="width: 5px; height: 5px; background: var(--color-brass); border-radius: 50%; flex-shrink: 0;" aria-hidden="true"></span>
+            <span class="font-body" style="font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-muted);">
+              {name}
+            </span>
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: Ambient image (desktop only) -->
+  <div
+    class="hero-media"
+    style="display: none; position: relative; overflow: hidden;"
+  >
+    <img
+      src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=45&fm=webp&fit=crop&auto=format"
+      alt=""
+      aria-hidden="true"
+      loading="eager"
+      decoding="async"
+      style="width: 100%; height: 100%; object-fit: cover;"
+    />
+    <!-- Gradient blend into ivory background -->
+    <div style="position: absolute; inset: 0; background: linear-gradient(to right, var(--color-ivory) 0%, rgba(249,248,245,0.3) 20%, transparent 40%);" aria-hidden="true"></div>
+    <!-- Subtle navy tint for depth -->
+    <div style="position: absolute; inset: 0; background: rgba(15,27,45,0.12);" aria-hidden="true"></div>
+  </div>
+
+  <!-- Mobile: subtle background image behind text -->
+  <div class="hero-mobile-bg" style="display: none;" aria-hidden="true">
+    <img
+      src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=640&q=20&fm=webp&fit=crop&auto=format"
+      alt=""
+      loading="eager"
+      fetchpriority="high"
+      style="width: 100%; height: 100%; object-fit: cover;"
+    />
+    <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(249,248,245,0.92) 0%, rgba(249,248,245,0.85) 60%, rgba(249,248,245,0.95) 100%);"></div>
+  </div>
+</section>
+
+<style>
+  @media (min-width: 1024px) {
+    .hero-grid {
+      grid-template-columns: 1fr 0.85fr !important;
+    }
+    .hero-media {
+      display: block !important;
+    }
+    .hero-grid > div:first-child {
+      padding-left: calc((100vw - 1280px) / 2 + 32px);
+    }
+  }
+
+  @media (min-width: 1024px) and (max-width: 1320px) {
+    .hero-grid > div:first-child {
+      padding-left: 48px;
+    }
+  }
+
+  /* Mobile: show background behind text */
+  @media (max-width: 1023px) {
+    .hero-mobile-bg {
+      display: block !important;
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-grid > div:first-child {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  /* Hero entrance animation via CSS (no JS dependency for LCP) */
+  [data-hero-el] {
+    animation: heroFadeUp 0.8s ease-out both;
+  }
+  [data-hero-el]:nth-child(1) { animation-delay: 0.1s; }
+  [data-hero-el]:nth-child(2) { animation-delay: 0.2s; }
+  [data-hero-el]:nth-child(3) { animation-delay: 0.3s; }
+  [data-hero-el]:nth-child(4) { animation-delay: 0.4s; }
+  [data-hero-el]:nth-child(5) { animation-delay: 0.5s; }
+  [data-hero-el]:nth-child(6) { animation-delay: 0.6s; }
+
+  @keyframes heroFadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-hero-el] {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+</style>

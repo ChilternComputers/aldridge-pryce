@@ -1,0 +1,58 @@
+---
+import { testimonials } from '@/data/testimonials';
+---
+
+<section style="background: var(--color-ivory); padding: 96px 32px;" aria-label="Client testimonials">
+  <div style="max-width: 800px; margin: 0 auto;">
+    <div style="margin-bottom: 56px;" data-reveal>
+      <span class="eyebrow" style="display: block; margin-bottom: 14px;">Testimonials</span>
+      <h2 class="font-heading" style="margin: 0 0 14px;">What our clients say</h2>
+      <div class="brass-rule"></div>
+    </div>
+
+    <!-- Featured large quote -->
+    <div style="margin-bottom: 56px; padding-bottom: 48px; border-bottom: 1px solid var(--color-border);" data-reveal>
+      <blockquote style="margin: 0;">
+        <p class="font-heading" style="font-size: clamp(1.4rem, 2.5vw, 2rem); font-style: italic; line-height: 1.6; color: var(--color-navy); margin: 0 0 24px;">
+          &ldquo;{testimonials[0].quote}&rdquo;
+        </p>
+        <footer style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 36px; height: 1px; background: var(--color-brass);"></div>
+          <cite class="font-body" style="font-style: normal; font-size: 0.85rem; color: var(--color-muted);">
+            <strong style="color: var(--color-charcoal);">{testimonials[0].author}</strong>, {testimonials[0].matterType}
+          </cite>
+        </footer>
+      </blockquote>
+    </div>
+
+    <!-- Two smaller quotes -->
+    <div style="display: grid; grid-template-columns: 1fr; gap: 40px;" class="testimonial-pair" data-stagger-parent>
+      {testimonials.slice(1, 3).map((t) => (
+        <div style="padding-left: 24px; border-left: 2px solid var(--color-brass);" data-stagger-child>
+          <blockquote style="margin: 0;">
+            <p class="font-body" style="font-size: 0.95rem; font-style: italic; line-height: 1.75; color: var(--color-charcoal); margin: 0 0 14px;">
+              &ldquo;{t.quote}&rdquo;
+            </p>
+            <cite class="font-body" style="font-style: normal; font-size: 0.8rem; color: var(--color-muted);">
+              <strong style="color: var(--color-charcoal);">{t.author}</strong>, {t.matterType}
+            </cite>
+          </blockquote>
+        </div>
+      ))}
+    </div>
+
+    <div style="margin-top: 40px;" data-reveal>
+      <a href="/testimonials/" class="font-body" style="font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-navy);">
+        Read all testimonials &rarr;
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (min-width: 768px) {
+    .testimonial-pair {
+      grid-template-columns: 1fr 1fr !important;
+    }
+  }
+</style>

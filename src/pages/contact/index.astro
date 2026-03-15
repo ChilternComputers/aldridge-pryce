@@ -1,0 +1,135 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import PageHero from '@/components/sections/PageHero.astro';
+import Input from '@/components/ui/Input.astro';
+import { config } from '@/config';
+import { practiceAreas } from '@/data/practice-areas';
+import { getWebPageSchema } from '@/lib/schemas';
+import { Shield } from '@lucide/astro';
+---
+
+<Layout
+  title="Contact Us | Aldridge & Pryce Solicitors"
+  description="Get in touch with Aldridge & Pryce Solicitors in Manchester. Call 0161 483 7200, email enquiries@aldridgepryce.co.uk, or complete our online enquiry form."
+  schema={getWebPageSchema({
+    title: 'Contact Us',
+    description: 'Contact Aldridge & Pryce Solicitors in Manchester.',
+    url: '/contact/',
+  })}
+>
+  <PageHero
+    title="Contact Us"
+    subtitle="We're here to help. Get in touch to discuss your legal matter in confidence."
+    eyebrow="Get in Touch"
+  />
+
+  <section style="background: var(--color-ivory); padding: 80px 32px;">
+    <div style="max-width: 720px; margin: 0 auto;">
+      <!-- Contact details — clean list -->
+      <div style="border-top: 1px solid var(--color-border); margin-bottom: 56px;" data-reveal>
+        {[
+          { label: 'Address', value: config.address.full },
+          { label: 'Telephone', value: config.phone, href: `tel:${config.phone.replace(/\s/g, '')}` },
+          { label: 'Email', value: config.email, href: `mailto:${config.email}` },
+          { label: 'Hours', value: `${config.hours.weekday}`, note: config.hours.note },
+        ].map((item) => (
+          <div style="display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--color-border);">
+            <span class="font-body" style="font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-brass); padding-top: 2px;">
+              {item.label}
+            </span>
+            <div>
+              {item.href ? (
+                <a href={item.href} class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); transition: color 0.2s;">
+                  {item.value}
+                </a>
+              ) : (
+                <span class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal);">
+                  {item.value}
+                </span>
+              )}
+              {item.note && (
+                <span class="font-body" style="display: block; font-size: 0.82rem; color: var(--color-muted); margin-top: 2px;">
+                  {item.note}
+                </span>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Enquiry form -->
+      <div data-reveal>
+        <span class="eyebrow" style="display: block; margin-bottom: 14px;">Enquiry Form</span>
+        <h2 class="font-heading" style="font-size: 1.5rem; margin: 0 0 8px;">Send us a message</h2>
+        <p class="font-body" style="font-size: 0.9rem; color: var(--color-muted); margin: 0 0 32px;">
+          All enquiries are treated in the strictest confidence.
+        </p>
+
+        <form id="contact-form" style="display: grid; grid-template-columns: 1fr; gap: 20px;" class="contact-form-grid">
+          <Input name="name" label="Full Name" required placeholder="Your full name" />
+          <Input name="email" label="Email" type="email" required placeholder="you@example.com" />
+          <Input name="phone" label="Phone" type="tel" placeholder="e.g. 07700 900000" />
+          <div class="contact-full">
+            <Input name="practice-area" label="Practice Area" type="select">
+              <option value="">Select a practice area...</option>
+              {practiceAreas.map((area) => (
+                <option value={area.slug}>{area.name}</option>
+              ))}
+            </Input>
+          </div>
+          <div class="contact-full">
+            <Input name="message" label="Your Matter" type="textarea" required placeholder="Please describe your matter briefly..." />
+          </div>
+          <div class="contact-full">
+            <button type="submit" class="btn-primary" style="padding: 14px 40px;">Submit Enquiry</button>
+            <p style="display: flex; align-items: center; gap: 6px; margin: 12px 0 0; font-size: 0.78rem; color: var(--color-muted);">
+              <Shield size={13} aria-hidden="true" />
+              Your enquiry is confidential
+            </p>
+          </div>
+        </form>
+      </div>
+
+      <!-- SRA -->
+      <div style="margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--color-border);" data-reveal>
+        <a
+          href="https://www.sra.org.uk/consumers/register/organisation/?sraNumber=648291"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-body"
+          style="font-size: 0.75rem; font-weight: 600; color: var(--color-muted); display: inline-flex; align-items: center; gap: 6px;"
+        >
+          <span style="width: 6px; height: 6px; background: #4CAF50; border-radius: 50%; display: inline-block;"></span>
+          SRA Regulated — No. {config.sraNumber}
+        </a>
+        <span class="font-body" style="display: block; margin-top: 6px; font-size: 0.78rem; color: var(--color-muted);">
+          <a href="/privacy/" style="color: var(--color-brass);">View our complaints procedure</a>
+        </span>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  @media (min-width: 640px) {
+    .contact-form-grid {
+      grid-template-columns: 1fr 1fr !important;
+    }
+    .contact-full {
+      grid-column: 1 / -1;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    if (btn) {
+      btn.textContent = 'Thank you — we\'ll be in touch shortly';
+      btn.disabled = true;
+      btn.style.opacity = '0.6';
+    }
+  });
+</script>

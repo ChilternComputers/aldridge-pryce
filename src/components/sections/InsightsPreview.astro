@@ -1,0 +1,62 @@
+---
+import { articles } from '@/data/insights';
+import { ArrowRight } from '@lucide/astro';
+
+const featured = articles.slice(0, 3);
+---
+
+<section style="background: var(--color-stone); padding: 96px 32px;" aria-label="Latest insights">
+  <div style="max-width: 960px; margin: 0 auto;">
+    <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; flex-wrap: wrap; gap: 16px;" data-reveal>
+      <div>
+        <span class="eyebrow" style="display: block; margin-bottom: 14px;">Latest</span>
+        <h2 class="font-heading" style="margin: 0;">News &amp; Insights</h2>
+      </div>
+      <a href="/insights/" class="font-body" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-navy);">
+        All Articles <ArrowRight size={14} aria-hidden="true" style="color: var(--color-brass);" />
+      </a>
+    </div>
+
+    <!-- Articles as editorial list -->
+    <div style="border-top: 1px solid var(--color-border);" data-stagger-parent>
+      {featured.map((article) => {
+        const date = new Date(article.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+        return (
+          <article style="display: grid; grid-template-columns: 1fr; gap: 8px; padding: 28px 0; border-bottom: 1px solid var(--color-border);" class="insight-row" data-stagger-child>
+            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+              <span class="font-body" style="font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-brass);">
+                {article.practiceArea}
+              </span>
+              <span class="font-body" style="font-size: 0.78rem; color: var(--color-muted);">{date}</span>
+              <span class="font-body" style="font-size: 0.78rem; color: var(--color-muted);">{article.readTime}</span>
+            </div>
+            <h3 class="font-heading" style="font-size: 1.1rem; color: var(--color-navy); margin: 0; line-height: 1.4;">
+              {article.title}
+            </h3>
+            <p class="font-body insight-excerpt" style="font-size: 0.9rem; color: var(--color-muted); line-height: 1.65; margin: 0; display: none;">
+              {article.excerpt}
+            </p>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (min-width: 768px) {
+    .insight-row {
+      grid-template-columns: 140px 1fr !important;
+      gap: 0 20px !important;
+    }
+    .insight-row > div:first-child {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 4px !important;
+    }
+    .insight-excerpt {
+      display: block !important;
+      grid-column: 2 !important;
+    }
+  }
+</style>

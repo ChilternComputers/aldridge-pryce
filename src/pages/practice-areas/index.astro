@@ -1,0 +1,74 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import PageHero from '@/components/sections/PageHero.astro';
+import ConsultationCTA from '@/components/sections/ConsultationCTA.astro';
+import { practiceAreas } from '@/data/practice-areas';
+import { getWebPageSchema } from '@/lib/schemas';
+import { ArrowRight } from '@lucide/astro';
+---
+
+<Layout
+  title="Practice Areas | Aldridge & Pryce Solicitors"
+  description="Expert legal advice across eight specialist practice areas including family law, conveyancing, wills & probate, criminal defence, employment, personal injury, commercial law and dispute resolution."
+  schema={getWebPageSchema({
+    title: 'Practice Areas',
+    description: 'Specialist legal services across eight practice areas.',
+    url: '/practice-areas/',
+  })}
+>
+  <PageHero
+    title="Areas of Practice"
+    subtitle="Specialist legal advice across eight areas of law, delivered by experienced solicitors who understand your needs."
+    eyebrow="Our Expertise"
+  />
+
+  <section style="background: var(--color-ivory);">
+    {practiceAreas.map((area, i) => (
+      <div style={`padding: 72px 32px; ${i < practiceAreas.length - 1 ? 'border-bottom: 1px solid var(--color-border);' : ''}`}>
+        <div style="max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 40px;" class="pa-row">
+          <!-- Number + Title -->
+          <div data-reveal>
+            <span class="font-body" style="font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; color: var(--color-brass); display: block; margin-bottom: 10px;">
+              0{i + 1}
+            </span>
+            <h2 class="font-heading" style="font-size: clamp(1.6rem, 2.5vw, 2.2rem); margin: 0 0 14px; color: var(--color-navy);">
+              {area.name}
+            </h2>
+            <div style="width: 40px; height: 2px; background: var(--color-brass); margin-bottom: 20px;"></div>
+            <p class="font-body" style="font-size: 1rem; color: var(--color-charcoal); line-height: 1.8; margin: 0;">
+              {area.description}
+            </p>
+          </div>
+
+          <!-- Key points + CTA -->
+          <div data-reveal>
+            <span class="font-body" style="font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-brass); display: block; margin-bottom: 14px;">
+              How we can help
+            </span>
+            <ul style="list-style: none; padding: 0; margin: 0 0 28px;">
+              {area.keyPoints.map((point) => (
+                <li style="padding: 8px 0; border-bottom: 1px solid var(--color-border); display: flex; align-items: center; gap: 10px;">
+                  <span style="width: 4px; height: 4px; background: var(--color-brass); border-radius: 50%; flex-shrink: 0;"></span>
+                  <span class="font-body" style="font-size: 0.9rem; color: var(--color-charcoal);">{point}</span>
+                </li>
+              ))}
+            </ul>
+            <a href="/contact/" class="font-body" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-navy); transition: color 0.2s;">
+              Speak to our team <ArrowRight size={14} aria-hidden="true" style="color: var(--color-brass);" />
+            </a>
+          </div>
+        </div>
+      </div>
+    ))}
+  </section>
+
+  <ConsultationCTA />
+</Layout>
+
+<style>
+  @media (min-width: 768px) {
+    .pa-row {
+      grid-template-columns: 1.2fr 1fr !important;
+    }
+  }
+</style>

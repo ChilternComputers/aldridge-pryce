@@ -1,0 +1,134 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import PageHero from '@/components/sections/PageHero.astro';
+import { config } from '@/config';
+import { getWebPageSchema } from '@/lib/schemas';
+---
+
+<Layout
+  title="Privacy Policy & Complaints Procedure | Aldridge & Pryce Solicitors"
+  description="Privacy policy, GDPR compliance information, complaints procedure and regulatory details for Aldridge & Pryce Solicitors."
+  schema={getWebPageSchema({
+    title: 'Privacy Policy & Complaints Procedure',
+    description: 'Privacy, GDPR, and complaints information for Aldridge & Pryce.',
+    url: '/privacy/',
+  })}
+>
+  <PageHero
+    title="Privacy &amp; Complaints"
+    subtitle="Our commitment to protecting your data and maintaining the highest standards of service."
+    eyebrow="Legal Information"
+  />
+
+  <section style="background: var(--color-ivory); padding: 80px 32px;">
+    <div style="max-width: 720px; margin: 0 auto;">
+
+      <!-- Privacy -->
+      <div style="margin-bottom: 56px;" data-reveal>
+        <h2 class="font-heading" style="margin: 0 0 14px;">Privacy Policy</h2>
+        <div class="brass-rule" style="margin-bottom: 28px;"></div>
+
+        <h3 class="font-heading" style="font-size: 1.1rem; margin: 28px 0 10px;">Who we are</h3>
+        <p class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.8; margin: 0 0 20px; max-width: none;">
+          {config.legalName} is authorised and regulated by the Solicitors Regulation Authority (SRA No. {config.sraNumber}). Our registered office is {config.address.full}. For data protection purposes, we are the data controller.
+        </p>
+
+        <h3 class="font-heading" style="font-size: 1.1rem; margin: 28px 0 10px;">What data we collect</h3>
+        <p class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.8; margin: 0 0 10px; max-width: none;">When you contact us or instruct us, we may collect:</p>
+        <ul style="padding-left: 18px; margin: 0 0 20px; display: flex; flex-direction: column; gap: 4px;">
+          <li class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.6;">Your name, address, email address, and telephone number</li>
+          <li class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.6;">Information relating to your legal matter</li>
+          <li class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.6;">Financial information for billing and transaction completion</li>
+          <li class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.6;">Identification documents for anti-money laundering compliance</li>
+        </ul>
+
+        <h3 class="font-heading" style="font-size: 1.1rem; margin: 28px 0 10px;">How we use your data</h3>
+        <ul style="padding-left: 18px; margin: 0 0 20px; display: flex; flex-direction: column; gap: 4px;">
+          <li class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.6;">Provide legal services and advice</li>
+          <li class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.6;">Communicate with you about your matter</li>
+          <li class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.6;">Comply with our regulatory and legal obligations</li>
+          <li class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.6;">Process payments and manage our accounts</li>
+        </ul>
+
+        <h3 class="font-heading" style="font-size: 1.1rem; margin: 28px 0 10px;">Legal basis</h3>
+        <p class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.8; margin: 0 0 20px; max-width: none;">
+          We process data on the basis of: (a) contractual necessity; (b) legal obligation — SRA regulations and anti-money laundering legislation; and (c) legitimate interest — to manage and improve our services.
+        </p>
+
+        <h3 class="font-heading" style="font-size: 1.1rem; margin: 28px 0 10px;">Data retention</h3>
+        <p class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.8; margin: 0 0 20px; max-width: none;">
+          We retain client files for a minimum of six years after the conclusion of a matter, in line with SRA guidelines. Some data may be retained longer where required by law.
+        </p>
+
+        <h3 class="font-heading" style="font-size: 1.1rem; margin: 28px 0 10px;">Your rights</h3>
+        <p class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.8; margin: 0 0 10px; max-width: none;">Under the UK GDPR, you have the right to:</p>
+        <ul style="padding-left: 18px; margin: 0 0 20px; display: flex; flex-direction: column; gap: 4px;">
+          <li class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.6;">Access the personal data we hold about you</li>
+          <li class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.6;">Request correction of inaccurate data</li>
+          <li class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.6;">Request erasure (subject to legal obligations)</li>
+          <li class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.6;">Object to or restrict processing in certain circumstances</li>
+          <li class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.6;">Lodge a complaint with the Information Commissioner's Office</li>
+        </ul>
+        <p class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.8; margin: 0 0 20px; max-width: none;">
+          Contact us at <a href={`mailto:${config.email}`} style="color: var(--color-brass);">{config.email}</a> to exercise these rights.
+        </p>
+
+        <h3 class="font-heading" style="font-size: 1.1rem; margin: 28px 0 10px;">Cookies</h3>
+        <p class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.8; margin: 0; max-width: none;">
+          This website does not use tracking cookies or third-party analytics.
+        </p>
+      </div>
+
+      <!-- Complaints -->
+      <div style="padding: 40px 0; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); margin-bottom: 48px;" data-reveal>
+        <h2 class="font-heading" style="margin: 0 0 14px;">Complaints Procedure</h2>
+        <div class="brass-rule" style="margin-bottom: 24px;"></div>
+
+        <p class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.8; margin: 0 0 16px; max-width: none;">
+          We are committed to providing a high-quality service. If you are unhappy, please raise your concerns with your solicitor or our Practice Manager, Rachel Cooper (<a href={`mailto:${config.email}`} style="color: var(--color-brass);">{config.email}</a>, <a href={`tel:${config.phone.replace(/\s/g, '')}`} style="color: var(--color-brass);">{config.phone}</a>).
+        </p>
+
+        <ol style="padding-left: 18px; margin: 0 0 20px; display: flex; flex-direction: column; gap: 6px;">
+          <li class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.6;">We acknowledge your complaint within two working days.</li>
+          <li class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.6;">Written response within 14 working days.</li>
+          <li class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.6;">If unsatisfied, we arrange a meeting or call to discuss further.</li>
+          <li class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.6;">Final position in writing within five working days.</li>
+        </ol>
+
+        <h3 class="font-heading" style="font-size: 1.05rem; margin: 24px 0 10px;">Legal Ombudsman</h3>
+        <p class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.8; margin: 0 0 10px; max-width: none;">
+          If unresolved, you may refer to the Legal Ombudsman within six months of our final response:
+        </p>
+        <div style="border-top: 1px solid var(--color-border);">
+          {[
+            { label: 'Website', value: 'www.legalombudsman.org.uk', href: 'https://www.legalombudsman.org.uk' },
+            { label: 'Telephone', value: '0300 555 0333', href: 'tel:03005550333' },
+            { label: 'Email', value: 'enquiries@legalombudsman.org.uk', href: 'mailto:enquiries@legalombudsman.org.uk' },
+            { label: 'Address', value: 'PO Box 6167, Slough SL1 0EH' },
+          ].map((item) => (
+            <div style="display: grid; grid-template-columns: 100px 1fr; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--color-border);">
+              <span class="font-body" style="font-size: 0.8rem; font-weight: 600; color: var(--color-brass);">{item.label}</span>
+              {item.href ? (
+                <a href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined} class="font-body" style="font-size: 0.9rem; color: var(--color-charcoal);">{item.value}</a>
+              ) : (
+                <span class="font-body" style="font-size: 0.9rem; color: var(--color-charcoal);">{item.value}</span>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Regulatory -->
+      <div data-reveal>
+        <h2 class="font-heading" style="margin: 0 0 14px;">Regulatory Information</h2>
+        <div class="brass-rule" style="margin-bottom: 24px;"></div>
+        <p class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.8; margin: 0 0 14px; max-width: none;">
+          {config.legalName} is authorised and regulated by the Solicitors Regulation Authority (SRA Number: {config.sraNumber}). Verify on the <a href="https://www.sra.org.uk/consumers/register/organisation/?sraNumber=648291" target="_blank" rel="noopener noreferrer" style="color: var(--color-brass);">SRA website</a>.
+        </p>
+        <p class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.8; margin: 0; max-width: none;">
+          We comply with the Money Laundering, Terrorist Financing and Transfer of Funds Regulations 2017 and may need to verify your identity before acting for you.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,26 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  eyebrow?: string;
+}
+
+const { title, subtitle, eyebrow } = Astro.props;
+---
+
+<section style="background: var(--color-navy); padding: 160px 32px 72px;" aria-label={title}>
+  <div style="max-width: 960px; margin: 0 auto;">
+    {eyebrow && (
+      <span class="eyebrow" style="display: block; margin-bottom: 16px;" data-reveal>{eyebrow}</span>
+    )}
+    <h1 class="font-heading" style="margin: 0 0 20px; color: #FFFFFF; max-width: 700px;" data-reveal>
+      {title}
+    </h1>
+    <div style="width: 48px; height: 2px; background: var(--color-brass); margin-bottom: 20px;" aria-hidden="true" data-reveal></div>
+    {subtitle && (
+      <p class="font-body" style="font-size: 1.05rem; color: rgba(255,255,255,0.55); margin: 0; line-height: 1.7; max-width: 520px;" data-reveal>
+        {subtitle}
+      </p>
+    )}
+  </div>
+</section>

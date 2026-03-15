@@ -1,0 +1,45 @@
+---
+import { Star } from '@lucide/astro';
+
+interface Props {
+  quote: string;
+  author: string;
+  matterType: string;
+  rating: number;
+  variant?: 'light' | 'dark';
+}
+
+const { quote, author, matterType, rating, variant = 'light' } = Astro.props;
+const isDark = variant === 'dark';
+---
+
+<div style={`padding: 40px 32px; border-radius: 2px; ${isDark ? 'background: var(--color-navy);' : 'background: var(--color-white); border: 1px solid var(--color-border);'}`}>
+  <!-- Stars -->
+  <div style="display: flex; gap: 4px; margin-bottom: 20px;">
+    {Array.from({ length: rating }).map(() => (
+      <Star size={16} aria-hidden="true" style="color: var(--color-brass); fill: var(--color-brass);" />
+    ))}
+  </div>
+
+  <!-- Quote -->
+  <blockquote style="margin: 0 0 24px;">
+    <p class="font-heading" style={`font-size: 1.05rem; font-style: italic; line-height: 1.75; margin: 0; ${isDark ? 'color: rgba(255,255,255,0.9);' : 'color: var(--color-charcoal);'}`}>
+      &ldquo;{quote}&rdquo;
+    </p>
+  </blockquote>
+
+  <!-- Attribution -->
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <div style={`width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-size: 1rem; ${isDark ? 'background: rgba(184,151,90,0.15); color: var(--color-brass);' : 'background: var(--color-stone); color: var(--color-navy);'}`}>
+      {author.charAt(0)}
+    </div>
+    <div>
+      <span class="font-body" style={`font-size: 0.9rem; font-weight: 600; display: block; ${isDark ? 'color: #FFFFFF;' : 'color: var(--color-navy);'}`}>
+        {author}
+      </span>
+      <span class="font-body" style={`font-size: 0.8rem; ${isDark ? 'color: rgba(255,255,255,0.5);' : 'color: var(--color-muted);'}`}>
+        {matterType}
+      </span>
+    </div>
+  </div>
+</div>

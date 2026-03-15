@@ -1,0 +1,98 @@
+---
+import { navLinks } from '@/data/navigation';
+import { config } from '@/config';
+import { Phone, Mail, ArrowRight } from '@lucide/astro';
+---
+
+<div
+  id="mobile-menu"
+  style="position: fixed; inset: 0; z-index: 105; background-color: var(--color-ivory); display: flex; flex-direction: column; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;"
+  aria-hidden="true"
+  role="dialog"
+  aria-label="Mobile navigation"
+>
+  <!-- Top spacing for nav -->
+  <div style="height: 108px; flex-shrink: 0;"></div>
+
+  <!-- Links -->
+  <nav style="flex: 1; padding: 0 32px; display: flex; flex-direction: column; justify-content: center;">
+    <div style="border-top: 1px solid var(--color-border);">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="mobile-menu-link font-heading"
+          style="display: flex; align-items: center; justify-content: space-between; padding: 18px 0; border-bottom: 1px solid var(--color-border); font-size: 1.2rem; font-weight: 400; color: var(--color-navy); transition: color 0.2s;"
+        >
+          {link.label}
+          <ArrowRight size={16} style="color: var(--color-brass);" aria-hidden="true" />
+        </a>
+      ))}
+    </div>
+  </nav>
+
+  <!-- Bottom contact -->
+  <div style="padding: 24px 32px 40px; border-top: 1px solid var(--color-border);">
+    <a href={`tel:${config.phone.replace(/\s/g, '')}`} style="display: flex; align-items: center; gap: 8px; color: var(--color-navy); font-size: 0.85rem; font-weight: 600; margin-bottom: 8px;">
+      <Phone size={14} style="color: var(--color-brass);" aria-hidden="true" />
+      {config.phone}
+    </a>
+    <a href={`mailto:${config.email}`} style="display: flex; align-items: center; gap: 8px; color: var(--color-muted); font-size: 0.85rem;">
+      <Mail size={14} style="color: var(--color-brass);" aria-hidden="true" />
+      {config.email}
+    </a>
+    <a href="/contact/" class="btn-primary" style="display: block; text-align: center; padding: 14px; margin-top: 20px;">
+      Book Consultation
+    </a>
+  </div>
+</div>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const burger1 = document.getElementById('burger-1');
+  const burger2 = document.getElementById('burger-2');
+  const burger3 = document.getElementById('burger-3');
+  let isOpen = false;
+
+  function openMenu() {
+    isOpen = true;
+    if (menu) {
+      menu.style.opacity = '1';
+      menu.style.pointerEvents = 'auto';
+      menu.setAttribute('aria-hidden', 'false');
+    }
+    if (toggle) {
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Close menu');
+    }
+    if (burger1) burger1.style.transform = 'rotate(45deg) translate(4px, 4px)';
+    if (burger2) burger2.style.opacity = '0';
+    if (burger3) { burger3.style.transform = 'rotate(-45deg) translate(5px, -5px)'; burger3.style.width = '22px'; }
+    document.body.style.overflow = 'hidden';
+    document.getElementById('main-content')?.toggleAttribute('inert', true);
+    document.querySelector('footer')?.toggleAttribute('inert', true);
+  }
+
+  function closeMenu() {
+    isOpen = false;
+    if (menu) {
+      menu.style.opacity = '0';
+      menu.style.pointerEvents = 'none';
+      menu.setAttribute('aria-hidden', 'true');
+    }
+    if (toggle) {
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open menu');
+    }
+    if (burger1) burger1.style.transform = 'none';
+    if (burger2) burger2.style.opacity = '1';
+    if (burger3) { burger3.style.transform = 'none'; burger3.style.width = '16px'; }
+    document.body.style.overflow = '';
+    document.getElementById('main-content')?.removeAttribute('inert');
+    document.querySelector('footer')?.removeAttribute('inert');
+  }
+
+  toggle?.addEventListener('click', () => { isOpen ? closeMenu() : openMenu(); });
+  menu?.querySelectorAll('a').forEach((link) => { link.addEventListener('click', closeMenu); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && isOpen) closeMenu(); });
+</script>

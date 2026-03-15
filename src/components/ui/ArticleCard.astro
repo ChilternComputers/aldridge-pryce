@@ -1,0 +1,50 @@
+---
+import { ArrowRight, Clock } from '@lucide/astro';
+
+interface Props {
+  title: string;
+  excerpt: string;
+  practiceArea: string;
+  date: string;
+  readTime: string;
+}
+
+const { title, excerpt, practiceArea, date, readTime } = Astro.props;
+
+const formattedDate = new Date(date).toLocaleDateString('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<article class="card-hover" style="background: var(--color-white); border: 1px solid var(--color-border); border-radius: 2px; padding: 32px; display: flex; flex-direction: column;">
+  <!-- Meta -->
+  <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap;">
+    <span class="font-body" style="font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-brass); background: rgba(184,151,90,0.1); padding: 4px 10px; border-radius: 2px;">
+      {practiceArea}
+    </span>
+    <span class="font-body" style="font-size: 0.8rem; color: var(--color-muted);">
+      {formattedDate}
+    </span>
+    <span style="display: flex; align-items: center; gap: 4px; font-size: 0.8rem; color: var(--color-muted);">
+      <Clock size={13} aria-hidden="true" />
+      {readTime}
+    </span>
+  </div>
+
+  <!-- Title -->
+  <h3 class="font-heading" style="font-size: 1.15rem; color: var(--color-navy); margin: 0 0 12px; line-height: 1.4;">
+    {title}
+  </h3>
+
+  <!-- Excerpt -->
+  <p class="font-body" style="font-size: 0.9rem; color: var(--color-charcoal); line-height: 1.7; margin: 0 0 20px; flex: 1;">
+    {excerpt}
+  </p>
+
+  <!-- CTA -->
+  <span class="font-body" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 600; color: var(--color-brass); text-transform: uppercase; letter-spacing: 0.08em;">
+    Read more <ArrowRight size={14} aria-hidden="true" />
+  </span>
+</article>
