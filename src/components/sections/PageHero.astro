@@ -11,7 +11,7 @@ const { title, subtitle, eyebrow } = Astro.props;
 <section style="background: var(--color-navy); padding: 160px 32px 72px;" aria-label={title}>
   <div style="max-width: 960px; margin: 0 auto;">
     {eyebrow && (
-      <span class="eyebrow" style="display: block; margin-bottom: 16px;" data-reveal>{eyebrow}</span>
+      <span class="eyebrow eyebrow-light" style="display: block; margin-bottom: 16px;" data-reveal>{eyebrow}</span>
     )}
     <h1 class="font-heading" style="margin: 0 0 20px; color: #FFFFFF; max-width: 700px;" data-reveal>
       {title}

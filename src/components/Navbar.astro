@@ -11,16 +11,16 @@ import { Phone, Mail } from '@lucide/astro';
 >
   <div style="max-width: 1280px; margin: 0 auto; padding: 0 32px; height: 36px; display: flex; align-items: center; justify-content: space-between;">
     <div style="display: flex; align-items: center; gap: 24px;">
-      <a href={`tel:${config.phone.replace(/\s/g, '')}`} style="display: flex; align-items: center; gap: 6px; font-size: 0.72rem; color: rgba(255,255,255,0.55); transition: color 0.2s;" class="font-body utility-link">
+      <a href={`tel:${config.phone.replace(/\s/g, '')}`} style="display: flex; align-items: center; gap: 6px; font-size: 0.72rem; color: rgba(255,255,255,0.75); transition: color 0.2s;" class="font-body utility-link">
         <Phone size={11} aria-hidden="true" />
         {config.phone}
       </a>
-      <a href={`mailto:${config.email}`} style="display: flex; align-items: center; gap: 6px; font-size: 0.72rem; color: rgba(255,255,255,0.55); transition: color 0.2s;" class="font-body utility-link">
+      <a href={`mailto:${config.email}`} style="display: flex; align-items: center; gap: 6px; font-size: 0.72rem; color: rgba(255,255,255,0.75); transition: color 0.2s;" class="font-body utility-link">
         <Mail size={11} aria-hidden="true" />
         {config.email}
       </a>
     </div>
-    <span class="font-body" style="font-size: 0.65rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.3);">
+    <span class="font-body" style="font-size: 0.65rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.7);">
       SRA No. {config.sraNumber}
     </span>
   </div>

@@ -8,6 +8,7 @@ import { Phone, Mail, ArrowRight } from '@lucide/astro';
   id="mobile-menu"
   style="position: fixed; inset: 0; z-index: 105; background-color: var(--color-ivory); display: flex; flex-direction: column; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;"
   aria-hidden="true"
+  inert
   role="dialog"
   aria-label="Mobile navigation"
 >
@@ -60,6 +61,7 @@ import { Phone, Mail, ArrowRight } from '@lucide/astro';
       menu.style.opacity = '1';
       menu.style.pointerEvents = 'auto';
       menu.setAttribute('aria-hidden', 'false');
+      menu.removeAttribute('inert');
     }
     if (toggle) {
       toggle.setAttribute('aria-expanded', 'true');
@@ -79,6 +81,7 @@ import { Phone, Mail, ArrowRight } from '@lucide/astro';
       menu.style.opacity = '0';
       menu.style.pointerEvents = 'none';
       menu.setAttribute('aria-hidden', 'true');
+      menu.toggleAttribute('inert', true);
     }
     if (toggle) {
       toggle.setAttribute('aria-expanded', 'false');
