@@ -19,7 +19,7 @@ export const practiceAreas: PracticeArea[] = [
       'Cohabitation disputes and TOLATA claims',
       'Domestic abuse protection orders',
     ],
-    image: 'https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&q=80&fit=crop&auto=format',
+    image: '/images/unsplash/1511895426328-dc8714191300.webp',
   },
   {
     name: 'Residential Conveyancing',
@@ -33,7 +33,7 @@ export const practiceAreas: PracticeArea[] = [
       'Shared ownership transactions',
       'Lease extensions and enfranchisement',
     ],
-    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80&fit=crop&auto=format',
+    image: '/images/unsplash/1560518883-ce09059eeffa.webp',
   },
   {
     name: 'Wills, Trusts & Probate',
@@ -47,7 +47,7 @@ export const practiceAreas: PracticeArea[] = [
       'Inheritance tax planning',
       'Court of Protection applications',
     ],
-    image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80&fit=crop&auto=format',
+    image: '/images/unsplash/1450101499163-c8848c66ca85.webp',
   },
   {
     name: 'Criminal Defence',
@@ -61,7 +61,7 @@ export const practiceAreas: PracticeArea[] = [
       'Appeals and case reviews',
       'Regulatory and professional investigations',
     ],
-    image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80&fit=crop&auto=format',
+    image: '/images/unsplash/1589829545856-d10d557cf95f.webp',
   },
   {
     name: 'Employment Law',
@@ -75,7 +75,7 @@ export const practiceAreas: PracticeArea[] = [
       'Redundancy advice and procedures',
       'Contract disputes and restrictive covenants',
     ],
-    image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80&fit=crop&auto=format',
+    image: '/images/unsplash/1521791136064-7986c2920216.webp',
   },
   {
     name: 'Personal Injury',
@@ -89,7 +89,7 @@ export const practiceAreas: PracticeArea[] = [
       'Serious injury and catastrophic claims',
       'No-win, no-fee arrangements',
     ],
-    image: 'https://images.unsplash.com/photo-1504439468489-c8920d796a29?w=800&q=80&fit=crop&auto=format',
+    image: '/images/unsplash/1504439468489-c8920d796a29.webp',
   },
   {
     name: 'Commercial & Corporate',
@@ -103,7 +103,7 @@ export const practiceAreas: PracticeArea[] = [
       'Partnership agreements and LLP formation',
       'Regulatory compliance and governance',
     ],
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80&fit=crop&auto=format',
+    image: '/images/unsplash/1486406146926-c627a92ad1ab.webp',
   },
   {
     name: 'Dispute Resolution',
@@ -117,6 +117,6 @@ export const practiceAreas: PracticeArea[] = [
       'Mediation and alternative dispute resolution',
       'High Court and County Court litigation',
     ],
-    image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80&fit=crop&auto=format',
+    image: '/images/unsplash/1507679799987-c73779587ccf.webp',
   },
 ];
