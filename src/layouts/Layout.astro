@@ -3,6 +3,8 @@ import SEO from '@/components/SEO.astro';
 import Navbar from '@/components/Navbar.astro';
 import MobileMenu from '@/components/MobileMenu.astro';
 import Footer from '@/components/Footer.astro';
+import ChatWidget from '@/components/ChatWidget.astro';
+import SearchOverlay from '@/components/SearchOverlay.astro';
 import '@/styles/global.css';
 
 interface Props {
@@ -54,8 +56,9 @@ const { title, description, canonical, ogImage, noindex, schema } = Astro.props;
       />
     </noscript>
 
-    <!-- Hero image preload -->
-    <link rel="preload" as="image" href="/hero-mobile.webp" type="image/webp" />
+    <!-- Hero image preload (viewport-aware) -->
+    <link rel="preload" as="image" href="/hero-mobile.webp" type="image/webp" media="(max-width: 1023px)" />
+    <link rel="preload" as="image" href="/hero-desktop.webp" type="image/webp" media="(min-width: 1024px)" />
 
     <!-- Favicon & PWA -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -75,12 +78,14 @@ const { title, description, canonical, ogImage, noindex, schema } = Astro.props;
 
     <Navbar />
     <MobileMenu />
+    <SearchOverlay />
 
     <main id="main-content">
       <slot />
     </main>
 
     <Footer />
+    <ChatWidget />
 
     <script>
       import { gsap } from 'gsap';

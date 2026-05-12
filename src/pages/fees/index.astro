@@ -41,7 +41,7 @@ import { getWebPageSchema } from '@/lib/schemas';
         <div style="padding: 48px 0; border-bottom: 1px solid var(--color-border);" data-stagger-child>
           <!-- Header -->
           <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;">
-            <h3 class="font-heading" style="font-size: 1.3rem; color: var(--color-navy); margin: 0;">{fee.service}</h3>
+            <h2 class="font-heading" style="font-size: 1.3rem; color: var(--color-navy); margin: 0;">{fee.service}</h2>
             <span class="font-body" style="font-size: 1rem; font-weight: 600; color: var(--color-brass);">{fee.feeRange}</span>
           </div>
 
@@ -51,7 +51,7 @@ import { getWebPageSchema } from '@/lib/schemas';
 
           <!-- Stages -->
           <div style="margin-bottom: 24px;">
-            <span class="font-body" style="font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-brass); display: block; margin-bottom: 10px;">
+            <span class="font-body" style="font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #7A6339; display: block; margin-bottom: 10px;">
               Key Stages
             </span>
             <ol style="padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 6px;">
@@ -65,7 +65,7 @@ import { getWebPageSchema } from '@/lib/schemas';
 
           <!-- Disbursements -->
           <div style="margin-bottom: 24px;">
-            <span class="font-body" style="font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-brass); display: block; margin-bottom: 10px;">
+            <span class="font-body" style="font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #7A6339; display: block; margin-bottom: 10px;">
               Disbursements
             </span>
             <ul style="padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 6px;">
@@ -80,11 +80,11 @@ import { getWebPageSchema } from '@/lib/schemas';
           <!-- Timescale + handler — compact -->
           <div style="display: grid; grid-template-columns: 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--color-border);" class="fee-meta">
             <div>
-              <span class="font-body" style="font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-brass); display: block; margin-bottom: 4px;">Timescale</span>
+              <span class="font-body" style="font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #7A6339; display: block; margin-bottom: 4px;">Timescale</span>
               <p class="font-body" style="font-size: 0.85rem; color: var(--color-charcoal); line-height: 1.6; margin: 0; max-width: none;">{fee.timescale}</p>
             </div>
             <div>
-              <span class="font-body" style="font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-brass); display: block; margin-bottom: 4px;">Who handles your matter</span>
+              <span class="font-body" style="font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #7A6339; display: block; margin-bottom: 4px;">Who handles your matter</span>
               <p class="font-body" style="font-size: 0.85rem; color: var(--color-charcoal); line-height: 1.6; margin: 0; max-width: none;">{fee.handler}</p>
             </div>
           </div>
@@ -100,12 +100,12 @@ import { getWebPageSchema } from '@/lib/schemas';
   <!-- Complaints -->
   <section style="background: var(--color-stone); padding: 48px 32px;">
     <div style="max-width: 720px; margin: 0 auto;" data-reveal>
-      <h3 class="font-heading" style="font-size: 1.1rem; color: var(--color-navy); margin: 0 0 12px;">Not satisfied?</h3>
+      <h2 class="font-heading" style="font-size: 1.1rem; color: var(--color-navy); margin: 0 0 12px;">Not satisfied?</h2>
       <p class="font-body" style="font-size: 0.92rem; color: var(--color-charcoal); line-height: 1.7; margin: 0 0 10px; max-width: none;">
-        Contact our Practice Manager, Rachel Cooper, at <a href={`mailto:${config.email}`} style="color: var(--color-brass);">{config.email}</a> or on <a href={`tel:${config.phone.replace(/\s/g, '')}`} style="color: var(--color-brass);">{config.phone}</a>.
+        Contact our Practice Manager, Rachel Cooper, at <a href={`mailto:${config.email}`} style="color: #7A6339; text-decoration: underline;">{config.email}</a> or on <a href={`tel:${config.phone.replace(/\s/g, '')}`} style="color: #7A6339; text-decoration: underline;">{config.phone}</a>.
       </p>
       <p class="font-body" style="font-size: 0.92rem; color: var(--color-charcoal); line-height: 1.7; margin: 0; max-width: none;">
-        If unresolved, refer to the <a href="https://www.legalombudsman.org.uk" target="_blank" rel="noopener noreferrer" style="color: var(--color-brass);">Legal Ombudsman</a> (0300 555 0333). Full details in our <a href="/privacy/" style="color: var(--color-brass);">complaints procedure</a>.
+        If unresolved, refer to the <a href="https://www.legalombudsman.org.uk" target="_blank" rel="noopener noreferrer" style="color: #7A6339; text-decoration: underline;">Legal Ombudsman</a> (0300 555 0333). Full details in our <a href="/privacy/" style="color: #7A6339; text-decoration: underline;">complaints procedure</a>.
       </p>
     </div>
   </section>

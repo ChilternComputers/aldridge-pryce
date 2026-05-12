@@ -1,7 +1,7 @@
 ---
 import { navLinks } from '@/data/navigation';
 import { config } from '@/config';
-import { Phone, Mail, ArrowRight } from '@lucide/astro';
+import { Phone, Mail, ArrowRight, Search } from '@lucide/astro';
 ---
 
 <div
@@ -41,7 +41,15 @@ import { Phone, Mail, ArrowRight } from '@lucide/astro';
       <Mail size={14} style="color: var(--color-brass);" aria-hidden="true" />
       {config.email}
     </a>
-    <a href="/contact/" class="btn-primary" style="display: block; text-align: center; padding: 14px; margin-top: 20px;">
+    <button
+      data-search-trigger
+      class="btn-secondary"
+      style="display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px; margin-top: 16px;"
+    >
+      <Search size={15} aria-hidden="true" />
+      Search
+    </button>
+    <a href="/contact/" class="btn-primary" style="display: block; text-align: center; padding: 14px; margin-top: 10px;">
       Book Consultation
     </a>
   </div>

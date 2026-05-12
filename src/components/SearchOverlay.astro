@@ -1,0 +1,192 @@
+---
+import { searchIndex } from '@/data/search-index';
+---
+
+<!-- Search overlay -->
+<div
+  id="search-overlay"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Site search"
+  style="position: fixed; inset: 0; z-index: 200; background: rgba(9, 19, 32, 0.98); opacity: 0; pointer-events: none; transition: opacity 0.25s ease;"
+  inert
+>
+  <div style="max-width: 600px; margin: 0 auto; padding: 80px 32px 32px;">
+    <!-- Close button -->
+    <button
+      id="search-close"
+      aria-label="Close search"
+      style="position: absolute; top: 24px; right: 32px; background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.5); padding: 8px; transition: color 0.2s;"
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+
+    <!-- Search input -->
+    <div style="position: relative; margin-bottom: 32px;">
+      <label for="search-input" class="sr-only" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;">Search the site</label>
+      <input
+        id="search-input"
+        type="search"
+        placeholder="Search practice areas, team, insights…"
+        autocomplete="off"
+        style="width: 100%; background: transparent; border: none; border-bottom: 2px solid var(--color-brass); padding: 12px 0; font-family: var(--font-heading); font-size: 1.4rem; color: #FFFFFF; outline: none;"
+      />
+    </div>
+
+    <!-- Results -->
+    <div id="search-results" style="max-height: calc(100vh - 220px); overflow-y: auto;"></div>
+
+    <!-- Empty state (shown when no query) -->
+    <p id="search-hint" class="font-body" style="font-size: 0.85rem; color: rgba(255,255,255,0.35);">
+      Start typing to search across pages, practice areas, team members, and insights.
+    </p>
+  </div>
+</div>
+
+<!-- Embed search data -->
+<script define:vars={{ items: JSON.stringify(searchIndex) }}>
+  window.__searchIndex = JSON.parse(items);
+</script>
+
+<script>
+  const overlay = document.getElementById('search-overlay');
+  const input = document.getElementById('search-input') as HTMLInputElement;
+  const results = document.getElementById('search-results');
+  const hint = document.getElementById('search-hint');
+  const closeBtn = document.getElementById('search-close');
+
+  interface SearchItem {
+    title: string;
+    description: string;
+    url: string;
+    type: string;
+    meta?: string;
+  }
+
+  const searchData: SearchItem[] = (window as any).__searchIndex || [];
+
+  const typeLabels: Record<string, string> = {
+    'page': 'Pages',
+    'practice-area': 'Practice Areas',
+    'team': 'Team',
+    'insight': 'Insights',
+  };
+
+  function openSearch() {
+    if (!overlay) return;
+    overlay.style.opacity = '1';
+    overlay.style.pointerEvents = 'auto';
+    overlay.removeAttribute('inert');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => input?.focus(), 50);
+  }
+
+  function closeSearch() {
+    if (!overlay) return;
+    overlay.style.opacity = '0';
+    overlay.style.pointerEvents = 'none';
+    overlay.setAttribute('inert', '');
+    document.body.style.overflow = '';
+    if (input) input.value = '';
+    if (results) results.innerHTML = '';
+    if (hint) hint.style.display = '';
+  }
+
+  function performSearch(query: string) {
+    if (!results || !hint) return;
+
+    if (!query.trim()) {
+      results.innerHTML = '';
+      hint.style.display = '';
+      return;
+    }
+
+    hint.style.display = 'none';
+    const terms = query.toLowerCase().split(/\s+/);
+
+    const matched = searchData.filter((item) => {
+      const haystack = `${item.title} ${item.description} ${item.meta || ''}`.toLowerCase();
+      return terms.every((term) => haystack.includes(term));
+    });
+
+    if (matched.length === 0) {
+      results.innerHTML = `<p style="font-family: var(--font-body); font-size: 0.9rem; color: rgba(255,255,255,0.4);">No results found for "${query}"</p>`;
+      return;
+    }
+
+    // Group by type
+    const grouped: Record<string, SearchItem[]> = {};
+    matched.forEach((item) => {
+      if (!grouped[item.type]) grouped[item.type] = [];
+      grouped[item.type].push(item);
+    });
+
+    let html = '';
+    for (const [type, items] of Object.entries(grouped)) {
+      html += `<div style="margin-bottom: 28px;">`;
+      html += `<span style="display: block; font-family: var(--font-body); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-brass); margin-bottom: 12px;">${typeLabels[type] || type}</span>`;
+      items.forEach((item) => {
+        html += `<a href="${item.url}" style="display: block; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); text-decoration: none; transition: opacity 0.15s;" class="search-result-link">`;
+        html += `<span style="display: block; font-family: var(--font-heading); font-size: 1rem; color: #FFFFFF; margin-bottom: 4px;">${item.title}</span>`;
+        html += `<span style="display: block; font-family: var(--font-body); font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.5;">${item.description}</span>`;
+        if (item.meta) {
+          html += `<span style="display: block; font-family: var(--font-body); font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 4px;">${item.meta}</span>`;
+        }
+        html += `</a>`;
+      });
+      html += `</div>`;
+    }
+
+    results.innerHTML = html;
+  }
+
+  // Event listeners
+  input?.addEventListener('input', () => performSearch(input.value));
+  closeBtn?.addEventListener('click', closeSearch);
+
+  overlay?.addEventListener('click', (e) => {
+    if (e.target === overlay) closeSearch();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay?.style.opacity === '1') closeSearch();
+  });
+
+  // Global open trigger
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    if (target.closest('[data-search-trigger]')) {
+      e.preventDefault();
+      openSearch();
+    }
+  });
+
+  // Keyboard shortcut: Ctrl+K or Cmd+K
+  document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      if (overlay?.style.opacity === '1') {
+        closeSearch();
+      } else {
+        openSearch();
+      }
+    }
+  });
+</script>
+
+<style>
+  .search-result-link:hover {
+    opacity: 0.75;
+  }
+  #search-close:hover {
+    color: rgba(255,255,255,0.9) !important;
+  }
+  #search-input::placeholder {
+    color: rgba(255,255,255,0.25);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #search-overlay {
+      transition: none !important;
+    }
+  }
+</style>

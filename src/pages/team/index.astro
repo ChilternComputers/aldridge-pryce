@@ -29,7 +29,7 @@ import { getWebPageSchema } from '@/lib/schemas';
           <button
             class="team-filter font-body"
             data-filter={label.toLowerCase() === 'all' ? 'all' : label.toLowerCase()}
-            style={`padding: 6px 18px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; border: 1px solid var(--color-border); background: transparent; color: var(--color-muted);`}
+            style={`padding: 6px 18px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; border: 1px solid var(--color-border); background: transparent; color: #555;`}
           >
             {label}
           </button>
@@ -61,10 +61,10 @@ import { getWebPageSchema } from '@/lib/schemas';
 
           <!-- Info -->
           <div>
-            <h3 class="font-heading" style="font-size: 1.2rem; color: var(--color-navy); margin: 0 0 4px;">
+            <h2 class="font-heading" style="font-size: 1.2rem; color: var(--color-navy); margin: 0 0 4px;">
               {member.name}
             </h3>
-            <p class="font-body" style="font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-brass); margin: 0 0 4px;">
+            <p class="font-body" style="font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #7A6339; margin: 0 0 4px;">
               {member.role} &mdash; {member.specialism}
             </p>
             <p class="font-body" style="font-size: 0.92rem; color: var(--color-charcoal); line-height: 1.7; margin: 12px 0 0; max-width: 560px;">
@@ -99,7 +99,7 @@ import { getWebPageSchema } from '@/lib/schemas';
   const members = document.querySelectorAll('.team-member');
 
   // Set initial active
-  filters[0]?.setAttribute('style', filters[0].getAttribute('style')?.replace('background: transparent; color: var(--color-muted)', 'background: var(--color-navy); color: var(--color-white); border-color: var(--color-navy)') || '');
+  filters[0]?.setAttribute('style', filters[0].getAttribute('style')?.replace('background: transparent; color: #555', 'background: var(--color-navy); color: var(--color-white); border-color: var(--color-navy)') || '');
 
   filters.forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -108,7 +108,7 @@ import { getWebPageSchema } from '@/lib/schemas';
       filters.forEach((f) => {
         const el = f as HTMLElement;
         el.style.background = 'transparent';
-        el.style.color = 'var(--color-muted)';
+        el.style.color = '#555';
         el.style.borderColor = 'var(--color-border)';
       });
 

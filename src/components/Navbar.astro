@@ -1,7 +1,7 @@
 ---
 import { navLinks } from '@/data/navigation';
 import { config } from '@/config';
-import { Phone, Mail } from '@lucide/astro';
+import { Phone, Mail, Search } from '@lucide/astro';
 ---
 
 <!-- Utility bar — contact info, SRA number -->
@@ -55,6 +55,14 @@ import { Phone, Mail } from '@lucide/astro';
           {link.label}
         </a>
       ))}
+      <button
+        data-search-trigger
+        aria-label="Search the site"
+        style="background: none; border: none; cursor: pointer; color: var(--color-charcoal); padding: 6px; margin-left: 4px; transition: color 0.2s; display: flex; align-items: center;"
+        class="search-trigger-btn"
+      >
+        <Search size={17} aria-hidden="true" />
+      </button>
       <a
         href="/contact/"
         class="btn-primary"
@@ -94,6 +102,10 @@ import { Phone, Mail } from '@lucide/astro';
   }
 
   .utility-link:hover {
+    color: var(--color-brass) !important;
+  }
+
+  .search-trigger-btn:hover {
     color: var(--color-brass) !important;
   }
 </style>

@@ -3,6 +3,7 @@ import Layout from '@/layouts/Layout.astro';
 import PageHero from '@/components/sections/PageHero.astro';
 import StatsStrip from '@/components/sections/StatsStrip.astro';
 import ConsultationCTA from '@/components/sections/ConsultationCTA.astro';
+import VideoEmbed from '@/components/ui/VideoEmbed.astro';
 import { getWebPageSchema } from '@/lib/schemas';
 ---
 
@@ -52,6 +53,26 @@ import { getWebPageSchema } from '@/lib/schemas';
           &ldquo;Exceptional legal advice demands more than technical knowledge. It requires understanding — of your situation, your objectives, and the human context behind every instruction.&rdquo;
         </p>
       </blockquote>
+    </div>
+  </section>
+
+  <!-- Video — Our Story -->
+  <section style="background: var(--color-ivory); padding: 80px 32px;">
+    <div style="max-width: 720px; margin: 0 auto;">
+      <div data-reveal>
+        <span class="eyebrow" style="display: block; margin-bottom: 14px;">Watch</span>
+        <h2 class="font-heading" style="margin: 0 0 14px;">Our Story</h2>
+        <div class="brass-rule" style="margin-bottom: 32px;"></div>
+      </div>
+      <div data-reveal>
+        <VideoEmbed
+          videoId="dQw4w9WgXcQ"
+          title="Aldridge & Pryce — Our Story"
+        />
+        <p class="font-body" style="font-size: 0.85rem; color: var(--color-muted); margin: 16px 0 0; max-width: none;">
+          Hear from our partners about the values that have guided us for over four decades.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -125,7 +146,7 @@ import { getWebPageSchema } from '@/lib/schemas';
           { year: '2024', text: 'Over 2,500 cases completed. Named in Legal 500 for third consecutive year.' },
         ].map((item) => (
           <div style="display: grid; grid-template-columns: 64px 1fr; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--color-border);" data-stagger-child>
-            <span class="font-body" style="font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; color: var(--color-brass); padding-top: 2px;">
+            <span class="font-body" style="font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; color: #7A6339; padding-top: 2px;">
               {item.year}
             </span>
             <p class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.6; margin: 0; max-width: none;">

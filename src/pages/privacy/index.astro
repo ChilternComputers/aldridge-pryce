@@ -70,7 +70,7 @@ import { getWebPageSchema } from '@/lib/schemas';
           <li class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.6;">Lodge a complaint with the Information Commissioner's Office</li>
         </ul>
         <p class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.8; margin: 0 0 20px; max-width: none;">
-          Contact us at <a href={`mailto:${config.email}`} style="color: var(--color-brass);">{config.email}</a> to exercise these rights.
+          Contact us at <a href={`mailto:${config.email}`} style="color: #7A6339; text-decoration: underline;">{config.email}</a> to exercise these rights.
         </p>
 
         <h3 class="font-heading" style="font-size: 1.1rem; margin: 28px 0 10px;">Cookies</h3>
@@ -85,7 +85,7 @@ import { getWebPageSchema } from '@/lib/schemas';
         <div class="brass-rule" style="margin-bottom: 24px;"></div>
 
         <p class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.8; margin: 0 0 16px; max-width: none;">
-          We are committed to providing a high-quality service. If you are unhappy, please raise your concerns with your solicitor or our Practice Manager, Rachel Cooper (<a href={`mailto:${config.email}`} style="color: var(--color-brass);">{config.email}</a>, <a href={`tel:${config.phone.replace(/\s/g, '')}`} style="color: var(--color-brass);">{config.phone}</a>).
+          We are committed to providing a high-quality service. If you are unhappy, please raise your concerns with your solicitor or our Practice Manager, Rachel Cooper (<a href={`mailto:${config.email}`} style="color: #7A6339; text-decoration: underline;">{config.email}</a>, <a href={`tel:${config.phone.replace(/\s/g, '')}`} style="color: #7A6339; text-decoration: underline;">{config.phone}</a>).
         </p>
 
         <ol style="padding-left: 18px; margin: 0 0 20px; display: flex; flex-direction: column; gap: 6px;">
@@ -107,7 +107,7 @@ import { getWebPageSchema } from '@/lib/schemas';
             { label: 'Address', value: 'PO Box 6167, Slough SL1 0EH' },
           ].map((item) => (
             <div style="display: grid; grid-template-columns: 100px 1fr; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--color-border);">
-              <span class="font-body" style="font-size: 0.8rem; font-weight: 600; color: var(--color-brass);">{item.label}</span>
+              <span class="font-body" style="font-size: 0.8rem; font-weight: 600; color: #7A6339;">{item.label}</span>
               {item.href ? (
                 <a href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined} class="font-body" style="font-size: 0.9rem; color: var(--color-charcoal);">{item.value}</a>
               ) : (
@@ -123,7 +123,7 @@ import { getWebPageSchema } from '@/lib/schemas';
         <h2 class="font-heading" style="margin: 0 0 14px;">Regulatory Information</h2>
         <div class="brass-rule" style="margin-bottom: 24px;"></div>
         <p class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.8; margin: 0 0 14px; max-width: none;">
-          {config.legalName} is authorised and regulated by the Solicitors Regulation Authority (SRA Number: {config.sraNumber}). Verify on the <a href="https://www.sra.org.uk/consumers/register/organisation/?sraNumber=648291" target="_blank" rel="noopener noreferrer" style="color: var(--color-brass);">SRA website</a>.
+          {config.legalName} is authorised and regulated by the Solicitors Regulation Authority (SRA Number: {config.sraNumber}). Verify on the <a href="https://www.sra.org.uk/consumers/register/organisation/?sraNumber=648291" target="_blank" rel="noopener noreferrer" style="color: #7A6339; text-decoration: underline;">SRA website</a>.
         </p>
         <p class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.8; margin: 0; max-width: none;">
           We comply with the Money Laundering, Terrorist Financing and Transfer of Funds Regulations 2017 and may need to verify your identity before acting for you.

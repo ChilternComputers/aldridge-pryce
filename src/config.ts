@@ -21,6 +21,10 @@ export const config = {
     linkedin: 'https://linkedin.com/company/aldridge-pryce',
     twitter: 'https://twitter.com/aldridgepryce',
   },
+  emergency: {
+    phone: '0161 483 7201',
+    note: '24-hour emergency line for criminal defence matters',
+  },
   site: 'https://aldridge-pryce.pages.dev',
   stats: {
     years: 40,

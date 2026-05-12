@@ -60,7 +60,7 @@ import { ArrowRight } from '@lucide/astro';
   <!-- Right: Ambient image (desktop only) -->
   <div
     class="hero-media"
-    style="display: none; position: relative; overflow: hidden;"
+    style="position: relative; overflow: hidden;"
   >
     <img
       src="/hero-desktop.webp"
@@ -78,7 +78,7 @@ import { ArrowRight } from '@lucide/astro';
   </div>
 
   <!-- Mobile: subtle background image behind text -->
-  <div class="hero-mobile-bg" style="display: none;" aria-hidden="true">
+  <div class="hero-mobile-bg" aria-hidden="true">
     <img
       src="/hero-mobile.webp"
       alt=""
@@ -91,35 +91,42 @@ import { ArrowRight } from '@lucide/astro';
 </section>
 
 <style>
+  /* Mobile: hero-mobile-bg visible, hero-media hidden */
+  .hero-mobile-bg {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .hero-media {
+    display: none;
+  }
+  .hero-grid > div:first-child {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Desktop: hero-media visible, hero-mobile-bg hidden */
   @media (min-width: 1024px) {
     .hero-grid {
       grid-template-columns: 1fr 0.85fr !important;
     }
     .hero-media {
-      display: block !important;
+      display: block;
+    }
+    .hero-mobile-bg {
+      display: none;
     }
     .hero-grid > div:first-child {
       padding-left: calc((100vw - 1280px) / 2 + 32px);
+      position: static;
+      z-index: auto;
     }
   }
 
   @media (min-width: 1024px) and (max-width: 1320px) {
     .hero-grid > div:first-child {
       padding-left: 48px;
-    }
-  }
-
-  /* Mobile: show background behind text */
-  @media (max-width: 1023px) {
-    .hero-mobile-bg {
-      display: block !important;
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-    }
-    .hero-grid > div:first-child {
-      position: relative;
-      z-index: 1;
     }
   }
 

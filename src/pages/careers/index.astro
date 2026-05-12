@@ -1,0 +1,211 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import PageHero from '@/components/sections/PageHero.astro';
+import ConsultationCTA from '@/components/sections/ConsultationCTA.astro';
+import { jobListings } from '@/data/careers';
+import { getWebPageSchema, getJobPostingSchema } from '@/lib/schemas';
+import { Briefcase, MapPin, Clock, ChevronDown } from '@lucide/astro';
+
+const pageSchema = getWebPageSchema({
+  title: 'Careers',
+  description: 'Join the team at Aldridge & Pryce Solicitors. View current vacancies in Manchester.',
+  url: '/careers/',
+});
+
+const jobSchemas = jobListings.map((job) => getJobPostingSchema(job));
+---
+
+<Layout
+  title="Careers | Aldridge & Pryce Solicitors"
+  description="Join Aldridge & Pryce Solicitors in Manchester. View our current vacancies and discover why our team values professional development, work-life balance, and an inclusive culture."
+  schema={pageSchema}
+>
+  <!-- Additional job posting schemas -->
+  {jobSchemas.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))}
+
+  <PageHero
+    title="Careers"
+    subtitle="Join a firm where your career matters as much as your clients."
+    eyebrow="Work With Us"
+  />
+
+  <!-- Why Aldridge & Pryce -->
+  <section style="background: var(--color-ivory); padding: 80px 32px;">
+    <div style="max-width: 720px; margin: 0 auto;">
+      <div data-reveal>
+        <span class="eyebrow" style="display: block; margin-bottom: 14px;">Why Join Us</span>
+        <h2 class="font-heading" style="margin: 0 0 14px;">Why Aldridge &amp; Pryce?</h2>
+        <div class="brass-rule" style="margin-bottom: 32px;"></div>
+      </div>
+      <p class="font-body" style="font-size: 1.05rem; color: var(--color-charcoal); line-height: 1.85; margin: 0 0 40px; max-width: none;" data-reveal>
+        We believe that a great firm starts with great people. Since 1983, we've built a culture where talented lawyers and support professionals can thrive — delivering exceptional results for clients while developing rewarding careers.
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--color-border);" class="benefits-grid" data-stagger-parent>
+        {[
+          { title: 'Professional Development', text: 'Structured training programmes, mentoring from experienced partners, and funded professional qualifications. We invest in your growth because your expertise is our reputation.' },
+          { title: 'Work–Life Balance', text: 'Flexible working arrangements, generous holiday allowance, and a genuine commitment to sustainable workloads. We want you here for the long term.' },
+          { title: 'Inclusive Culture', text: 'A collegial, supportive environment where every voice is heard. We celebrate diversity of background and perspective — it makes us better lawyers.' },
+          { title: 'Manchester City Centre', text: 'Our St Peter\'s Square office is steps from Metrolink and surrounded by everything the city centre offers. Cycle-to-work scheme and season ticket loans available.' },
+        ].map((benefit) => (
+          <div style="padding: 24px 0; border-bottom: 1px solid var(--color-border);" data-stagger-child>
+            <h3 class="font-heading" style="font-size: 1.05rem; color: var(--color-navy); margin: 0 0 8px;">{benefit.title}</h3>
+            <p class="font-body" style="font-size: 0.9rem; color: var(--color-charcoal); line-height: 1.75; margin: 0; max-width: none;">{benefit.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Open Positions -->
+  <section style="background: var(--color-white); padding: 80px 32px;">
+    <div style="max-width: 720px; margin: 0 auto;">
+      <div data-reveal>
+        <span class="eyebrow" style="display: block; margin-bottom: 14px;">Vacancies</span>
+        <h2 class="font-heading" style="margin: 0 0 14px;">Open Positions</h2>
+        <div class="brass-rule" style="margin-bottom: 40px;"></div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--color-border);" data-stagger-parent>
+        {jobListings.map((job, index) => (
+          <div class="job-card" style="border-bottom: 1px solid var(--color-border);" data-stagger-child>
+            <button
+              class="job-toggle"
+              aria-expanded="false"
+              aria-controls={`job-details-${index}`}
+              style="width: 100%; background: none; border: none; cursor: pointer; text-align: left; padding: 24px 0; display: flex; align-items: start; justify-content: space-between; gap: 16px;"
+            >
+              <div>
+                <h3 class="font-heading" style="font-size: 1.05rem; color: var(--color-navy); margin: 0 0 10px;">
+                  {job.title}
+                </h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+                  <span class="font-body" style="display: inline-flex; align-items: center; gap: 5px; font-size: 0.78rem; color: var(--color-muted);">
+                    <Briefcase size={13} aria-hidden="true" />
+                    {job.department} · {job.type}
+                  </span>
+                  <span class="font-body" style="display: inline-flex; align-items: center; gap: 5px; font-size: 0.78rem; color: var(--color-muted);">
+                    <MapPin size={13} aria-hidden="true" />
+                    {job.location}
+                  </span>
+                  <span class="font-body" style="display: inline-flex; align-items: center; gap: 5px; font-size: 0.78rem; color: #7A6339; font-weight: 600;">
+                    {job.salary}
+                  </span>
+                </div>
+              </div>
+              <ChevronDown size={18} class="job-chevron" style="color: var(--color-muted); flex-shrink: 0; margin-top: 4px; transition: transform 0.25s ease;" aria-hidden="true" />
+            </button>
+
+            <div
+              id={`job-details-${index}`}
+              class="job-details"
+              style="max-height: 0; overflow: hidden; transition: max-height 0.35s ease;"
+            >
+              <div style="padding: 0 0 28px;">
+                <p class="font-body" style="font-size: 0.9rem; color: var(--color-charcoal); line-height: 1.75; margin: 0 0 24px; max-width: none;">
+                  {job.description}
+                </p>
+
+                <h4 class="font-heading" style="font-size: 0.9rem; color: var(--color-navy); margin: 0 0 10px;">Key Responsibilities</h4>
+                <ul style="list-style: none; padding: 0; margin: 0 0 24px;">
+                  {job.responsibilities.map((item) => (
+                    <li class="font-body" style="font-size: 0.85rem; color: var(--color-charcoal); line-height: 1.7; padding: 3px 0 3px 16px; position: relative;">
+                      <span style="position: absolute; left: 0; color: var(--color-brass);" aria-hidden="true">—</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+
+                <h4 class="font-heading" style="font-size: 0.9rem; color: var(--color-navy); margin: 0 0 10px;">Requirements</h4>
+                <ul style="list-style: none; padding: 0; margin: 0 0 24px;">
+                  {job.requirements.map((item) => (
+                    <li class="font-body" style="font-size: 0.85rem; color: var(--color-charcoal); line-height: 1.7; padding: 3px 0 3px 16px; position: relative;">
+                      <span style="position: absolute; left: 0; color: var(--color-brass);" aria-hidden="true">—</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+
+                <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px;">
+                  <a
+                    href={`mailto:careers@aldridgepryce.co.uk?subject=Application: ${job.title}`}
+                    class="btn-primary"
+                    style="padding: 12px 28px;"
+                  >
+                    Apply Now
+                  </a>
+                  {job.closing && (
+                    <span class="font-body" style="display: inline-flex; align-items: center; gap: 5px; font-size: 0.78rem; color: var(--color-muted);">
+                      <Clock size={13} aria-hidden="true" />
+                      Closing: {job.closing}
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- No suitable role -->
+  <section style="background: var(--color-ivory); padding: 64px 32px;">
+    <div style="max-width: 720px; margin: 0 auto;" data-reveal>
+      <h3 class="font-heading" style="font-size: 1.15rem; color: var(--color-navy); margin: 0 0 12px;">No suitable role?</h3>
+      <p class="font-body" style="font-size: 0.95rem; color: var(--color-charcoal); line-height: 1.75; margin: 0; max-width: none;">
+        We're always interested in hearing from talented legal professionals. Send your CV and a covering letter to
+        <a href="mailto:careers@aldridgepryce.co.uk" style="color: #7A6339; font-weight: 600;">careers@aldridgepryce.co.uk</a>
+        and we'll keep your details on file.
+      </p>
+    </div>
+  </section>
+
+  <ConsultationCTA />
+</Layout>
+
+<style>
+  @media (min-width: 768px) {
+    .benefits-grid {
+      grid-template-columns: 1fr 1fr !important;
+    }
+  }
+
+  .job-toggle:hover h3 {
+    color: var(--color-brass) !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .job-details {
+      transition: none !important;
+    }
+    .job-chevron {
+      transition: none !important;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.job-toggle').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      const targetId = btn.getAttribute('aria-controls');
+      const details = targetId ? document.getElementById(targetId) : null;
+      const chevron = btn.querySelector('.job-chevron') as HTMLElement;
+
+      if (!details) return;
+
+      if (expanded) {
+        details.style.maxHeight = '0';
+        btn.setAttribute('aria-expanded', 'false');
+        if (chevron) chevron.style.transform = 'rotate(0deg)';
+      } else {
+        details.style.maxHeight = details.scrollHeight + 'px';
+        btn.setAttribute('aria-expanded', 'true');
+        if (chevron) chevron.style.transform = 'rotate(180deg)';
+      }
+    });
+  });
+</script>

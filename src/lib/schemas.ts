@@ -1,4 +1,5 @@
 import { config } from '@/config';
+import type { JobListing } from '@/data/careers';
 
 export function getLegalServiceSchema() {
   return {
@@ -62,6 +63,33 @@ export function getWebPageSchema(page: {
     provider: {
       '@type': 'LegalService',
       name: config.legalName,
+    },
+  };
+}
+
+export function getJobPostingSchema(job: JobListing) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'JobPosting',
+    title: job.title,
+    description: job.description,
+    datePosted: '2026-03-01',
+    validThrough: job.closing ? new Date(job.closing).toISOString().split('T')[0] : undefined,
+    employmentType: job.type === 'Part-time' ? 'PART_TIME' : 'FULL_TIME',
+    hiringOrganization: {
+      '@type': 'LegalService',
+      name: config.legalName,
+      sameAs: config.site,
+    },
+    jobLocation: {
+      '@type': 'Place',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: config.address.line1,
+        addressLocality: config.address.city,
+        postalCode: config.address.postcode,
+        addressCountry: 'GB',
+      },
     },
   };
 }

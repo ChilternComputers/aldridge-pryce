@@ -32,9 +32,10 @@ import { Shield } from '@lucide/astro';
           { label: 'Telephone', value: config.phone, href: `tel:${config.phone.replace(/\s/g, '')}` },
           { label: 'Email', value: config.email, href: `mailto:${config.email}` },
           { label: 'Hours', value: `${config.hours.weekday}`, note: config.hours.note },
+          { label: 'Emergency', value: config.emergency.phone, href: `tel:${config.emergency.phone.replace(/\s/g, '')}`, note: config.emergency.note },
         ].map((item) => (
           <div style="display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--color-border);">
-            <span class="font-body" style="font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-brass); padding-top: 2px;">
+            <span class="font-body" style="font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #7A6339; padding-top: 2px;">
               {item.label}
             </span>
             <div>
@@ -103,7 +104,7 @@ import { Shield } from '@lucide/astro';
           SRA Regulated — No. {config.sraNumber}
         </a>
         <span class="font-body" style="display: block; margin-top: 6px; font-size: 0.78rem; color: var(--color-muted);">
-          <a href="/privacy/" style="color: var(--color-brass);">View our complaints procedure</a>
+          <a href="/privacy/" style="color: #7A6339;">View our complaints procedure</a>
         </span>
       </div>
     </div>

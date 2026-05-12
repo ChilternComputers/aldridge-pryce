@@ -20,6 +20,9 @@ import { Phone } from '@lucide/astro';
         <Phone size={16} aria-hidden="true" />
         {config.phone}
       </a>
+      <p class="font-body" style="font-size: 0.82rem; color: rgba(255,255,255,0.45); margin: 10px 0 0;">
+        Criminal defence emergency? Call <a href={`tel:${config.emergency.phone.replace(/\s/g, '')}`} style="color: var(--color-brass); font-weight: 600;">{config.emergency.phone}</a> — available 24 hours.
+      </p>
     </div>
 
     <!-- Right: Compact form -->
