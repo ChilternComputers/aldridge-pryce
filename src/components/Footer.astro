@@ -40,6 +40,9 @@ import { Linkedin, Twitter } from '@lucide/astro';
               </li>
             ))}
             <li>
+              <a href="/careers/" class="font-body footer-link" style="font-size: 0.85rem; color: rgba(255,255,255,0.75); transition: color 0.2s;">Careers</a>
+            </li>
+            <li>
               <a href="/privacy/" class="font-body footer-link" style="font-size: 0.85rem; color: rgba(255,255,255,0.75); transition: color 0.2s;">Privacy &amp; Complaints</a>
             </li>
           </ul>
@@ -57,18 +60,6 @@ import { Linkedin, Twitter } from '@lucide/astro';
               <a href="/practice-areas/" class="font-body footer-link" style="font-size: 0.85rem; color: rgba(255,255,255,0.75); transition: color 0.2s;">{area.name}</a>
             </li>
           ))}
-        </ul>
-      </div>
-
-      <!-- Explore -->
-      <div>
-        <span class="font-body" style="font-size: 0.68rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-brass); display: block; margin-bottom: 14px;">
-          Explore
-        </span>
-        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
-          <li>
-            <a href="/careers/" class="font-body footer-link" style="font-size: 0.85rem; color: rgba(255,255,255,0.75); transition: color 0.2s;">Careers</a>
-          </li>
         </ul>
       </div>
 
@@ -116,7 +107,7 @@ import { Linkedin, Twitter } from '@lucide/astro';
 <style>
   @media (min-width: 768px) {
     .footer-grid {
-      grid-template-columns: 1.4fr 1fr 1fr 0.7fr 1.2fr !important;
+      grid-template-columns: 1.4fr 1fr 1fr 1.2fr !important;
     }
     .footer-bottom {
       flex-direction: row !important;
